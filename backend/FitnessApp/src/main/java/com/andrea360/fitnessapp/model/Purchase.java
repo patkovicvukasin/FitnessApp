@@ -30,7 +30,7 @@ public class Purchase {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "service_id", nullable = false)
-    private FitnessService fitnessService;
+    private TrainingType trainingType;
 
     @Positive
     @Column(nullable = false)

@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-public class FitnessService {
+public class TrainingType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

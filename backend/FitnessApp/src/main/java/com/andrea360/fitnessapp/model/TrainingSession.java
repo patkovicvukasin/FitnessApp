@@ -35,7 +35,7 @@ public class TrainingSession {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "service_id", nullable = false)
-    private FitnessService fitnessService;
+    private TrainingType trainingType;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "employee_id", nullable = false)
