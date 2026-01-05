@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.employee.CreateEmployeeRequest;
 import com.andrea360.fitnessapp.dto.employee.EmployeeMapper;
 import com.andrea360.fitnessapp.dto.employee.EmployeeResponse;
 import com.andrea360.fitnessapp.service.employee.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class EmployeeController {
     private final EmployeeMapper employeeMapper;
 
     @PostMapping
-    public EmployeeResponse create(@RequestBody CreateEmployeeRequest request) {
+    public EmployeeResponse create(@Valid @RequestBody CreateEmployeeRequest request) {
         return employeeMapper.toResponse(
                 employeeService.createEmployee(
                         request.getFirstName(),

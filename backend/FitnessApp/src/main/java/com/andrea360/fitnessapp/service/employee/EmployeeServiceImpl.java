@@ -1,5 +1,7 @@
 package com.andrea360.fitnessapp.service.employee;
 
+import com.andrea360.fitnessapp.exception.common.BadRequestException;
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.Employee;
 import com.andrea360.fitnessapp.model.Location;
 import com.andrea360.fitnessapp.model.Role;
@@ -46,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getById(Long id) {
         return employeeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Employee not found"));
+                .orElseThrow(() -> new NotFoundException("Employee not found"));
     }
 
     @Override

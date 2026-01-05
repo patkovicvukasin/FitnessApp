@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.trainingType.CreateTrainingTypeRequest;
 import com.andrea360.fitnessapp.dto.trainingType.TrainingTypeMapper;
 import com.andrea360.fitnessapp.dto.trainingType.TrainingTypeResponse;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class TrainingTypeController {
     private final TrainingTypeMapper trainingTypeMapper;
 
     @PostMapping
-    public TrainingTypeResponse create(@RequestBody CreateTrainingTypeRequest request) {
+    public TrainingTypeResponse create(@Valid @RequestBody CreateTrainingTypeRequest request) {
         return trainingTypeMapper.toResponse(
                 trainingTypeService.createService(
                         request.getName(),

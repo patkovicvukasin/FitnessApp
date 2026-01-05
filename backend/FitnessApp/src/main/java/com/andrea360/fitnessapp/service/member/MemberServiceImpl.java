@@ -1,5 +1,7 @@
 package com.andrea360.fitnessapp.service.member;
 
+import com.andrea360.fitnessapp.exception.common.BadRequestException;
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.Location;
 import com.andrea360.fitnessapp.model.Member;
 import com.andrea360.fitnessapp.model.Role;
@@ -46,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member getById(Long id) {
         return memberRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
+                .orElseThrow(() -> new NotFoundException("Member not found"));
     }
 
     @Override

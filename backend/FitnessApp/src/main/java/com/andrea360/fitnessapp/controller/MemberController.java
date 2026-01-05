@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.member.CreateMemberRequest;
 import com.andrea360.fitnessapp.dto.member.MemberMapper;
 import com.andrea360.fitnessapp.dto.member.MemberResponse;
 import com.andrea360.fitnessapp.service.member.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class MemberController {
     private final MemberMapper memberMapper;
 
     @PostMapping
-    public MemberResponse create(@RequestBody CreateMemberRequest request) {
+    public MemberResponse create(@Valid @RequestBody CreateMemberRequest request) {
         return memberMapper.toResponse(
                 memberService.createMember(
                         request.getFirstName(),

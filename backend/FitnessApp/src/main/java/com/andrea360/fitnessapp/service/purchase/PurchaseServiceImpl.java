@@ -27,9 +27,6 @@ public class PurchaseServiceImpl implements PurchaseService {
             int quantity,
             String stripePaymentIntentId
     ) {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than zero");
-        }
 
         Member member = memberService.getById(memberId);
         TrainingType trainingType = trainingTypeService.getById(serviceId);

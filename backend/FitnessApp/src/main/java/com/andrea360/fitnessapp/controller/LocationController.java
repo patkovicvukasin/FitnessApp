@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.location.CreateLocationRequest;
 import com.andrea360.fitnessapp.dto.location.LocationMapper;
 import com.andrea360.fitnessapp.dto.location.LocationResponse;
 import com.andrea360.fitnessapp.service.location.LocationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class LocationController {
     private final LocationMapper locationMapper;
 
     @PostMapping
-    public LocationResponse create(@RequestBody CreateLocationRequest request) {
+    public LocationResponse create(@Valid @RequestBody CreateLocationRequest request) {
         return locationMapper.toResponse(
                 locationService.createLocation(
                         request.getName(),

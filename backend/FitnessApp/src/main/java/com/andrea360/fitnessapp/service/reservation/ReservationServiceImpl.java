@@ -1,5 +1,10 @@
 package com.andrea360.fitnessapp.service.reservation;
 
+import com.andrea360.fitnessapp.exception.common.BadRequestException;
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
+import com.andrea360.fitnessapp.exception.reservation.NoRemainingCreditsException;
+import com.andrea360.fitnessapp.exception.reservation.SessionAlreadyReservedException;
+import com.andrea360.fitnessapp.exception.reservation.SessionFullException;
 import com.andrea360.fitnessapp.model.Purchase;
 import com.andrea360.fitnessapp.model.Reservation;
 import com.andrea360.fitnessapp.model.TrainingSession;
@@ -26,15 +31,26 @@ public class ReservationServiceImpl implements ReservationService {
     public Reservation reserveSession(Long memberId, Long trainingSessionId) {
 
         TrainingSession session = trainingSessionRepository.findById(trainingSessionId)
-                .orElseThrow(() -> new IllegalArgumentException("Training session not found"));
+                .orElseThrow(() -> new NotFoundException("Training session not found"));
 
         if (reservationRepository.existsByMemberIdAndTrainingSessionId(memberId, trainingSessionId)) {
-            throw new IllegalArgumentException("Member already reserved this session");
+            throw new SessionAlreadyReservedException("Member already reserved this session");
+        }
+
+        if (reservationRepository
+                .existsByMemberIdAndTrainingSession_StartTimeLessThanAndTrainingSession_EndTimeGreaterThan(
+                        memberId,
+                        session.getEndTime(),
+                        session.getStartTime()
+                )) {
+            throw new BadRequestException(
+                    "Member already has a reservation in the given time range"
+            );
         }
 
         int reservedCount = reservationRepository.countByTrainingSessionId(trainingSessionId);
         if (reservedCount >= session.getMaxCapacity()) {
-            throw new IllegalArgumentException("Session capacity is full");
+            throw new SessionFullException("Session capacity is full");
         }
 
         Purchase purchase = purchaseRepository
@@ -43,7 +59,7 @@ public class ReservationServiceImpl implements ReservationService {
                         session.getTrainingType().getId(),
                         0
                 )
-                .orElseThrow(() -> new IllegalArgumentException("No valid purchase for this service"));
+                .orElseThrow(() -> new NoRemainingCreditsException("No valid purchase for this service"));
 
         purchase.setRemaining(purchase.getRemaining() - 1);
 
@@ -63,7 +79,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public int getAvailableSlots(Long trainingSessionId) {
         TrainingSession session = trainingSessionRepository.findById(trainingSessionId)
-                .orElseThrow(() -> new IllegalArgumentException("Training session not found"));
+                .orElseThrow(() -> new NotFoundException("Training session not found"));
 
         int reserved = reservationRepository.countByTrainingSessionId(trainingSessionId);
         return session.getMaxCapacity() - reserved;

@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeResponse {
-
     private Long id;
     private String firstName;
     private String lastName;

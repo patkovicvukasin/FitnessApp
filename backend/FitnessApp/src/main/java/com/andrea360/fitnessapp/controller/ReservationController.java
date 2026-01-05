@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.reservation.CreateReservationRequest;
 import com.andrea360.fitnessapp.dto.reservation.ReservationMapper;
 import com.andrea360.fitnessapp.dto.reservation.ReservationResponse;
 import com.andrea360.fitnessapp.service.reservation.ReservationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class ReservationController {
     private final ReservationMapper reservationMapper;
 
     @PostMapping
-    public ReservationResponse reserve(@RequestBody CreateReservationRequest request) {
+    public ReservationResponse reserve(@Valid @RequestBody CreateReservationRequest request) {
         return reservationMapper.toResponse(
                 reservationService.reserveSession(
                         request.getMemberId(),

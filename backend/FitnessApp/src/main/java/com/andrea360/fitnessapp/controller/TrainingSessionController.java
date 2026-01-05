@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.trainingSession.CreateTrainingSessionRequest
 import com.andrea360.fitnessapp.dto.trainingSession.TrainingSessionMapper;
 import com.andrea360.fitnessapp.dto.trainingSession.TrainingSessionResponse;
 import com.andrea360.fitnessapp.service.trainingSession.TrainingSessionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class TrainingSessionController {
     private final TrainingSessionMapper trainingSessionMapper;
 
     @PostMapping
-    public TrainingSessionResponse create(@RequestBody CreateTrainingSessionRequest request) {
+    public TrainingSessionResponse create(@Valid @RequestBody CreateTrainingSessionRequest request) {
         return trainingSessionMapper.toResponse(
                 trainingSessionService.createSession(
                         request.getStartTime(),

@@ -1,5 +1,6 @@
 package com.andrea360.fitnessapp.service.location;
 
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.Location;
 import com.andrea360.fitnessapp.repository.LocationRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Location getById(Long id) {
         return locationRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Location not found"));
+                .orElseThrow(() -> new NotFoundException("Location not found"));
     }
 
     @Override

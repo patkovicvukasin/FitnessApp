@@ -1,5 +1,7 @@
 package com.andrea360.fitnessapp.service.trainingSession;
 
+import com.andrea360.fitnessapp.exception.common.BadRequestException;
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.Employee;
 import com.andrea360.fitnessapp.model.TrainingType;
 import com.andrea360.fitnessapp.model.Location;
@@ -35,7 +37,18 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
             Long employeeId
     ) {
         if (!endTime.isAfter(startTime)) {
-            throw new IllegalArgumentException("End time must be after start time");
+            throw new BadRequestException("End time must be after start time");
+        }
+
+        if (trainingSessionRepository
+                .existsByEmployeeIdAndStartTimeLessThanAndEndTimeGreaterThan(
+                        employeeId,
+                        endTime,
+                        startTime
+                )) {
+            throw new BadRequestException(
+                    "Employee already has a session in the given time range"
+            );
         }
 
         Location location = locationService.getById(locationId);
@@ -56,7 +69,7 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     @Override
     public TrainingSession getById(Long id) {
         return trainingSessionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Training session not found"));
+                .orElseThrow(() -> new NotFoundException("Training session not found"));
     }
 
     @Override

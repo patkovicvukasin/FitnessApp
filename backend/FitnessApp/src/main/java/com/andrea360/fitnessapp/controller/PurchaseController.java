@@ -4,6 +4,7 @@ import com.andrea360.fitnessapp.dto.purchase.CreatePurchaseRequest;
 import com.andrea360.fitnessapp.dto.purchase.PurchaseMapper;
 import com.andrea360.fitnessapp.dto.purchase.PurchaseResponse;
 import com.andrea360.fitnessapp.service.purchase.PurchaseService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class PurchaseController {
     private final PurchaseMapper purchaseMapper;
 
     @PostMapping
-    public PurchaseResponse create(@RequestBody CreatePurchaseRequest request) {
+    public PurchaseResponse create(@Valid @RequestBody CreatePurchaseRequest request) {
         return purchaseMapper.toResponse(
                 purchaseService.createPurchase(
                         request.getMemberId(),

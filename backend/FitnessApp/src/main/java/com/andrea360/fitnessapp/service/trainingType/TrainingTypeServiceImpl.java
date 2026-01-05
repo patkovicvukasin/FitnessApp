@@ -1,5 +1,6 @@
 package com.andrea360.fitnessapp.service.trainingType;
 
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.TrainingType;
 import com.andrea360.fitnessapp.repository.TrainingTypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class TrainingTypeServiceImpl implements TrainingTypeService {
     @Override
     public TrainingType getById(Long id) {
         return trainingTypeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Fitness service not found"));
+                .orElseThrow(() -> new NotFoundException("Training type not found"));
     }
 
     @Override
