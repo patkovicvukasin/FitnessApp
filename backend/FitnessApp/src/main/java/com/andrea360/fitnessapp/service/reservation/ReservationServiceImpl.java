@@ -38,7 +38,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         Purchase purchase = purchaseRepository
-                .findFirstByMemberIdAndFitnessServiceIdAndRemainingGreaterThanOrderByPurchasedAtAsc(
+                .findFirstByMemberIdAndTrainingTypeIdAndRemainingGreaterThanOrderByPurchasedAtAsc(
                         memberId,
                         session.getTrainingType().getId(),
                         0

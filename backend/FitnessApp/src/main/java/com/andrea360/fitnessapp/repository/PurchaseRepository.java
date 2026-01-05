@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     List<Purchase> findByMemberId(Long memberId);
 
-    Optional<Purchase> findFirstByMemberIdAndFitnessServiceIdAndRemainingGreaterThanOrderByPurchasedAtAsc(
-            Long member_id, Long fitnessService_id, int remaining
+    Optional<Purchase> findFirstByMemberIdAndTrainingTypeIdAndRemainingGreaterThanOrderByPurchasedAtAsc(
+            Long member_id, Long trainingType_id, int remaining
     );
 
 }
