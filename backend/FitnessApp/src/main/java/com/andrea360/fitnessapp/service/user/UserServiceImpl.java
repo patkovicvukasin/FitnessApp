@@ -6,6 +6,7 @@ import com.andrea360.fitnessapp.model.Role;
 import com.andrea360.fitnessapp.model.User;
 import com.andrea360.fitnessapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User createUser(String email, String password, Role role) {
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User();
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setRole(role);
         return userRepository.save(user);
     }
