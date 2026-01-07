@@ -37,6 +37,7 @@ public class ReservationServiceImpl implements ReservationService {
             throw new SessionAlreadyReservedException("Member already reserved this session");
         }
 
+        // Check if member has any overlapping reservation in this time range
         if (reservationRepository
                 .existsByMemberIdAndTrainingSession_StartTimeLessThanAndTrainingSession_EndTimeGreaterThan(
                         memberId,
@@ -53,6 +54,7 @@ public class ReservationServiceImpl implements ReservationService {
             throw new SessionFullException("Session capacity is full");
         }
 
+        // Use the oldest purchase with remaining credits for this training type
         Purchase purchase = purchaseRepository
                 .findFirstByMemberIdAndTrainingTypeIdAndRemainingGreaterThanOrderByPurchasedAtAsc(
                         memberId,
@@ -66,6 +68,7 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation reservation = new Reservation();
         reservation.setMember(purchase.getMember());
         reservation.setTrainingSession(session);
+        reservation.setPurchase(purchase);
         reservation.setReservedAt(LocalDateTime.now());
 
         return reservationRepository.save(reservation);
@@ -83,5 +86,29 @@ public class ReservationServiceImpl implements ReservationService {
 
         int reserved = reservationRepository.countByTrainingSessionId(trainingSessionId);
         return session.getMaxCapacity() - reserved;
+    }
+
+    @Override
+    @Transactional
+    public void cancelReservation(Long reservationId) {
+
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new NotFoundException("Reservation not found"));
+
+        TrainingSession session = reservation.getTrainingSession();
+
+        if (session.getStartTime().isBefore(LocalDateTime.now())) {
+            throw new BadRequestException("Cannot cancel a reservation for a session that has already started");
+        }
+
+        Purchase purchase = reservation.getPurchase();
+        purchase.setRemaining(purchase.getRemaining() + 1);
+
+        reservationRepository.delete(reservation);
+    }
+
+    @Override
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
     }
 }

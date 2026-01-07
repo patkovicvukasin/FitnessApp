@@ -11,4 +11,8 @@ public interface ReservationService {
     List<Reservation> getReservationsForMember(Long memberId);
 
     int getAvailableSlots(Long trainingSessionId);
+
+    void cancelReservation(Long reservationId);
+
+    List<Reservation> getAllReservations();
 }

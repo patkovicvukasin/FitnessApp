@@ -1,6 +1,5 @@
 package com.andrea360.fitnessapp.service.member;
 
-import com.andrea360.fitnessapp.exception.common.BadRequestException;
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.Location;
 import com.andrea360.fitnessapp.model.Member;
@@ -14,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,5 +54,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> getByLocation(Long locationId) {
         return memberRepository.findByLocationId(locationId);
+    }
+
+    @Override
+    public Optional<Member> findByUserId(Long userId) {
+        return memberRepository.findByUserId(userId);
     }
 }

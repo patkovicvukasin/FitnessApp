@@ -2,6 +2,7 @@ package com.andrea360.fitnessapp.service.member;
 
 import com.andrea360.fitnessapp.model.Member;
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberService {
 
@@ -16,5 +17,7 @@ public interface MemberService {
     Member getById(Long id);
 
     List<Member> getByLocation(Long locationId);
+
+    Optional<Member> findByUserId(Long id);
 }
 

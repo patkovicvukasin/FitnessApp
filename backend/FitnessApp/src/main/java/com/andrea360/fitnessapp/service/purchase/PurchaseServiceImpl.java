@@ -1,12 +1,14 @@
 package com.andrea360.fitnessapp.service.purchase;
 
-import com.andrea360.fitnessapp.model.TrainingType;
-import com.andrea360.fitnessapp.model.Member;
-import com.andrea360.fitnessapp.model.Purchase;
+import com.andrea360.fitnessapp.exception.purchase.ForbiddenPurchaseException;
+import com.andrea360.fitnessapp.model.*;
 import com.andrea360.fitnessapp.repository.PurchaseRepository;
+import com.andrea360.fitnessapp.repository.UserRepository;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
 import com.andrea360.fitnessapp.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     private final PurchaseRepository purchaseRepository;
     private final MemberService memberService;
     private final TrainingTypeService trainingTypeService;
+    private final UserRepository userRepository;
 
     @Override
     public Purchase createPurchase(
@@ -44,6 +47,22 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public List<Purchase> getPurchasesForMember(Long memberId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User currentUser = userRepository.findByEmail(email).orElseThrow();
+
+        if (currentUser.getRole() == Role.MEMBER) {
+            Member currentMember = memberService.findByUserId(currentUser.getId()).orElseThrow();
+            if (!currentMember.getId().equals(memberId)) {
+                throw new ForbiddenPurchaseException("You can only view your own purchases");
+            }
+        }
+
         return purchaseRepository.findByMemberId(memberId);
+    }
+
+    @Override
+    public List<Purchase> getAllPurchases() {
+        return purchaseRepository.findAll();
     }
 }

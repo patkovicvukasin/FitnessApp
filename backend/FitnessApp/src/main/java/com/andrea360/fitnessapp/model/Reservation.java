@@ -31,4 +31,7 @@ public class Reservation {
     @Column(nullable = false)
     private LocalDateTime reservedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "purchase_id", nullable = false)
+    private Purchase purchase;
 }

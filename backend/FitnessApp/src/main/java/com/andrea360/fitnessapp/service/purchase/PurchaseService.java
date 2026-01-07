@@ -13,5 +13,7 @@ public interface PurchaseService {
     );
 
     List<Purchase> getPurchasesForMember(Long memberId);
+
+    List<Purchase> getAllPurchases();
 }
 
