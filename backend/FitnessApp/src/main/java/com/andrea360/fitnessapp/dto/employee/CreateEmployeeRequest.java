@@ -1,5 +1,6 @@
 package com.andrea360.fitnessapp.dto.employee;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -19,6 +20,7 @@ public class CreateEmployeeRequest {
     @NotNull(message = "Location ID is required")
     private Long locationId;
 
+    @Email(message = "Must be a valid email address")
     @NotBlank(message = "Email is required")
     private String email;
 

@@ -1,5 +1,7 @@
 package com.andrea360.fitnessapp.exception.handler;
 
+import com.andrea360.fitnessapp.exception.auth.AccessDeniedException;
+import com.andrea360.fitnessapp.exception.auth.UnauthorizedException;
 import com.andrea360.fitnessapp.exception.common.BadRequestException;
 import com.andrea360.fitnessapp.exception.common.ErrorResponse;
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
@@ -12,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import io.jsonwebtoken.JwtException;
+import org.springframework.security.core.AuthenticationException;
 
 import java.time.LocalDateTime;
 
@@ -129,6 +133,54 @@ public class GlobalExceptionHandler {
                         HttpStatus.BAD_REQUEST.value(),
                         HttpStatus.BAD_REQUEST.getReasonPhrase(),
                         ex.getMessage(),
+                        request.getRequestURI(),
+                        LocalDateTime.now()
+                )
+        );
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(
+            AccessDeniedException ex,
+            HttpServletRequest request
+    ) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
+                new ErrorResponse(
+                        HttpStatus.FORBIDDEN.value(),
+                        HttpStatus.FORBIDDEN.getReasonPhrase(),
+                        ex.getMessage(),
+                        request.getRequestURI(),
+                        LocalDateTime.now()
+                )
+        );
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorized(
+            UnauthorizedException ex,
+            HttpServletRequest request
+    ) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                new ErrorResponse(
+                        HttpStatus.UNAUTHORIZED.value(),
+                        HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                        ex.getMessage(),
+                        request.getRequestURI(),
+                        LocalDateTime.now()
+                )
+        );
+    }
+
+    @ExceptionHandler({ JwtException.class, AuthenticationException.class })
+    public ResponseEntity<ErrorResponse> handleAuthenticationError(
+            Exception ex,
+            HttpServletRequest request
+    ) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                new ErrorResponse(
+                        HttpStatus.UNAUTHORIZED.value(),
+                        HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                        "Invalid or expired authentication token",
                         request.getRequestURI(),
                         LocalDateTime.now()
                 )
