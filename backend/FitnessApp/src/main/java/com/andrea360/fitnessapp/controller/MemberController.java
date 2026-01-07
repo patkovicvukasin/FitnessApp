@@ -6,6 +6,7 @@ import com.andrea360.fitnessapp.dto.member.MemberResponse;
 import com.andrea360.fitnessapp.service.member.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberMapper memberMapper;
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @PostMapping
     public MemberResponse create(@Valid @RequestBody CreateMemberRequest request) {
         return memberMapper.toResponse(
@@ -31,6 +33,7 @@ public class MemberController {
         );
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping("/{id}")
     public MemberResponse getById(@PathVariable Long id) {
         return memberMapper.toResponse(
@@ -38,6 +41,7 @@ public class MemberController {
         );
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping("/by-location/{locationId}")
     public List<MemberResponse> getByLocation(@PathVariable Long locationId) {
         return memberService.getByLocation(locationId)

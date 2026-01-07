@@ -6,6 +6,7 @@ import com.andrea360.fitnessapp.dto.trainingType.TrainingTypeResponse;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class TrainingTypeController {
     private final TrainingTypeService trainingTypeService;
     private final TrainingTypeMapper trainingTypeMapper;
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @PostMapping
     public TrainingTypeResponse create(@Valid @RequestBody CreateTrainingTypeRequest request) {
         return trainingTypeMapper.toResponse(

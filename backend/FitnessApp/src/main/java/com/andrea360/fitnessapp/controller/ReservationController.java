@@ -6,6 +6,7 @@ import com.andrea360.fitnessapp.dto.reservation.ReservationResponse;
 import com.andrea360.fitnessapp.service.reservation.ReservationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ReservationController {
     private final ReservationService reservationService;
     private final ReservationMapper reservationMapper;
 
+    @PreAuthorize("hasAnyRole('MEMBER')")
     @PostMapping
     public ReservationResponse reserve(@Valid @RequestBody CreateReservationRequest request) {
         return reservationMapper.toResponse(
@@ -26,6 +28,15 @@ public class ReservationController {
                         request.getTrainingSessionId()
                 )
         );
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    @GetMapping("/all")
+    public List<ReservationResponse> getAll() {
+        return reservationService.getAllReservations()
+                .stream()
+                .map(reservationMapper::toResponse)
+                .toList();
     }
 
     @GetMapping("/member/{memberId}")
@@ -39,5 +50,10 @@ public class ReservationController {
     @GetMapping("/available-slots/{trainingSessionId}")
     public int getAvailableSlots(@PathVariable Long trainingSessionId) {
         return reservationService.getAvailableSlots(trainingSessionId);
+    }
+
+    @DeleteMapping("/{reservationId}")
+    public void cancel(@PathVariable Long reservationId) {
+        reservationService.cancelReservation(reservationId);
     }
 }
