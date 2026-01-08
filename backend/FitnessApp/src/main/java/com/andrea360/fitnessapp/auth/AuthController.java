@@ -2,6 +2,7 @@ package com.andrea360.fitnessapp.auth;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,5 +15,10 @@ public class AuthController {
     @PostMapping("/login")
     public AuthResponse login(@Valid @RequestBody AuthRequest request) {
         return authService.login(request);
+    }
+
+    @GetMapping("/me")
+    public AuthMeResponse me(Authentication auth) {
+        return authService.getCurrentUser(auth);
     }
 }

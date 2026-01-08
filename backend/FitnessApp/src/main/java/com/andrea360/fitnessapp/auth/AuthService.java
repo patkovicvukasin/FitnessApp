@@ -1,7 +1,5 @@
 package com.andrea360.fitnessapp.auth;
 
-import com.andrea360.fitnessapp.auth.AuthRequest;
-import com.andrea360.fitnessapp.auth.AuthResponse;
 import com.andrea360.fitnessapp.exception.auth.UnauthorizedException;
 import com.andrea360.fitnessapp.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -29,14 +29,29 @@ public class AuthService {
             Authentication authentication = authenticationManager.authenticate(authInput);
 
             String email = authentication.getName();
-            String role = authentication.getAuthorities()
-                    .iterator().next().getAuthority().replace("ROLE_", "");
-
+            String role = getPrimaryRole(authentication);
             String token = jwtTokenProvider.generateToken(email, role);
 
             return new AuthResponse(token);
         }catch (AuthenticationException e){
             throw new UnauthorizedException("Invalid email or password");
         }
+    }
+
+    public AuthMeResponse getCurrentUser(Authentication auth) {
+        return new AuthMeResponse(
+            auth.getName(),
+            getPrimaryRole(auth)
+        );
+    }
+
+    private String getPrimaryRole(Authentication auth) {
+        if (auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")))
+            return "ADMIN";
+        if (auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_EMPLOYEE")))
+            return "EMPLOYEE";
+        if (auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_MEMBER")))
+            return "MEMBER";
+        return "UNKNOWN";
     }
 }
