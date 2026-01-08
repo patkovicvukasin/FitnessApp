@@ -19,19 +19,6 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
     private final PurchaseMapper purchaseMapper;
 
-    @PreAuthorize("hasRole('MEMBER')")
-    @PostMapping
-    public PurchaseResponse create(@Valid @RequestBody CreatePurchaseRequest request) {
-        return purchaseMapper.toResponse(
-                purchaseService.createPurchase(
-                        request.getMemberId(),
-                        request.getTrainingTypeId(),
-                        request.getQuantity(),
-                        request.getStripePaymentIntentId()
-                )
-        );
-    }
-
     @GetMapping("/member/{memberId}")
     public List<PurchaseResponse> getForMember(@PathVariable Long memberId) {
         return purchaseService.getPurchasesForMember(memberId)
