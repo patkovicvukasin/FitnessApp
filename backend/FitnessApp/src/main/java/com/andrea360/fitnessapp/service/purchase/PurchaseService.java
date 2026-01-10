@@ -12,8 +12,9 @@ public interface PurchaseService {
             String stripePaymentIntentId
     );
 
-    List<Purchase> getPurchasesForMember(Long memberId);
+    List<Purchase> getMyPurchases(String email);
 
     List<Purchase> getAllPurchases();
+
 }
 

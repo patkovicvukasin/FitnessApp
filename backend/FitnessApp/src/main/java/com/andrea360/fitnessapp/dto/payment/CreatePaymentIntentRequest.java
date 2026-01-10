@@ -9,9 +9,6 @@ import lombok.Setter;
 @Setter
 public class CreatePaymentIntentRequest {
 
-    @NotNull(message = "Member ID is required")
-    private Long memberId;
-
     @NotNull(message = "Training type ID is required")
     private Long trainingTypeId;
 

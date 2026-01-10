@@ -1,8 +1,7 @@
 package com.andrea360.fitnessapp.controller;
 
-import com.andrea360.fitnessapp.dto.reservation.CreateReservationRequest;
-import com.andrea360.fitnessapp.dto.reservation.ReservationMapper;
-import com.andrea360.fitnessapp.dto.reservation.ReservationResponse;
+import com.andrea360.fitnessapp.dto.reservation.*;
+import com.andrea360.fitnessapp.model.Member;
 import com.andrea360.fitnessapp.service.reservation.ReservationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,37 +17,32 @@ import java.util.List;
 public class ReservationController {
 
     private final ReservationService reservationService;
-    private final ReservationMapper reservationMapper;
+    private final EmployeeReservationMapper employeeReservationMapper;
+    private final MemberReservationMapper memberReservationMapper;
 
     @PreAuthorize("hasAnyRole('MEMBER')")
     @PostMapping
-    public ReservationResponse reserve(@Valid @RequestBody CreateReservationRequest request) {
-        return reservationMapper.toResponse(
+    public MemberReservationResponse reserve(@Valid @RequestBody CreateReservationRequest request, Authentication auth) {
+        String email = auth.getName();
+        return memberReservationMapper.toResponse(
                 reservationService.reserveSession(
-                        request.getMemberId(),
+                        email,
                         request.getTrainingSessionId()
                 )
         );
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
-    @GetMapping("/all")
-    public List<ReservationResponse> getAll() {
-        return reservationService.getAllReservations()
+    @PreAuthorize("hasRole('MEMBER')")
+    @GetMapping("/my-reservations")
+    public List<MemberReservationResponse> getMyReservations(Authentication auth) {
+        String email = auth.getName();
+        return reservationService.getMyReservations(email)
                 .stream()
-                .map(reservationMapper::toResponse)
+                .map(memberReservationMapper::toResponse)
                 .toList();
     }
 
-    @PreAuthorize("hasAnyRole('MEMBER')")
-    @GetMapping("/member/{memberId}")
-    public List<ReservationResponse> getForMember(@PathVariable Long memberId) {
-        return reservationService.getReservationsForMember(memberId)
-                .stream()
-                .map(reservationMapper::toResponse)
-                .toList();
-    }
-
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE', 'MEMBER')")
     @GetMapping("/available-slots/{trainingSessionId}")
     public int getAvailableSlots(@PathVariable Long trainingSessionId) {
         return reservationService.getAvailableSlots(trainingSessionId);
@@ -62,11 +56,11 @@ public class ReservationController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping("/by-session/{sessionId}")
-    public List<ReservationResponse> getBySession(@PathVariable Long sessionId, Authentication auth) {
+    public List<EmployeeReservationResponse> getBySession(@PathVariable Long sessionId, Authentication auth) {
         String email = auth.getName();
         return reservationService.getReservationsForSession(sessionId, email)
                 .stream()
-                .map(reservationMapper::toResponse)
+                .map(employeeReservationMapper::toResponse)
                 .toList();
     }
 }

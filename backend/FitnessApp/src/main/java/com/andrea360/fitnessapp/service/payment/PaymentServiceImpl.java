@@ -1,12 +1,16 @@
 package com.andrea360.fitnessapp.service.payment;
 
 import com.andrea360.fitnessapp.exception.common.BadRequestException;
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.Member;
 import com.andrea360.fitnessapp.model.Purchase;
 import com.andrea360.fitnessapp.model.TrainingType;
 import com.andrea360.fitnessapp.dto.payment.ConfirmPaymentRequest;
 import com.andrea360.fitnessapp.dto.payment.CreatePaymentIntentRequest;
 import com.andrea360.fitnessapp.dto.payment.CreatePaymentIntentResponse;
+import com.andrea360.fitnessapp.model.User;
+import com.andrea360.fitnessapp.repository.MemberRepository;
+import com.andrea360.fitnessapp.repository.UserRepository;
 import com.andrea360.fitnessapp.service.member.MemberService;
 import com.andrea360.fitnessapp.service.purchase.PurchaseService;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
@@ -26,7 +30,8 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
 
-    private final MemberService memberService;
+    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
     private final TrainingTypeService trainingTypeService;
     private final PurchaseService purchaseService;
 
@@ -39,8 +44,13 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public CreatePaymentIntentResponse createPaymentIntent(CreatePaymentIntentRequest request) {
-        Member member = memberService.getById(request.getMemberId());
+    public CreatePaymentIntentResponse createPaymentIntent(String email, CreatePaymentIntentRequest request) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        Member member = memberRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new NotFoundException("Member not found"));
+
         TrainingType trainingType = trainingTypeService.getById(request.getTrainingTypeId());
 
         long amountInCents = trainingType.getPrice()
@@ -76,7 +86,13 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Purchase confirmPayment(ConfirmPaymentRequest request) {
+    public Purchase confirmPayment(String email, ConfirmPaymentRequest request) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        Member member = memberRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new NotFoundException("Member not found"));
+
         try {
             PaymentIntent intent = PaymentIntent.retrieve(request.getPaymentIntentId());
 
@@ -95,7 +111,7 @@ public class PaymentServiceImpl implements PaymentService {
             }
 
             return purchaseService.createPurchase(
-                    request.getMemberId(),
+                    member.getId(),
                     request.getTrainingTypeId(),
                     request.getQuantity(),
                     request.getPaymentIntentId()

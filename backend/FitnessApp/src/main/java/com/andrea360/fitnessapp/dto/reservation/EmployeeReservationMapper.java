@@ -4,14 +4,14 @@ import com.andrea360.fitnessapp.model.Reservation;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReservationMapper {
+public class EmployeeReservationMapper {
 
-    public ReservationResponse toResponse(Reservation reservation) {
+    public EmployeeReservationResponse toResponse(Reservation reservation) {
         if (reservation == null) {
             return null;
         }
 
-        return new ReservationResponse(
+        return new EmployeeReservationResponse(
                 reservation.getId(),
                 reservation.getMember().getFirstName(),
                 reservation.getMember().getLastName(),

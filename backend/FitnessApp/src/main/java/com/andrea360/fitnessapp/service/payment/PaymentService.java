@@ -6,6 +6,6 @@ import com.andrea360.fitnessapp.dto.payment.CreatePaymentIntentRequest;
 import com.andrea360.fitnessapp.dto.payment.CreatePaymentIntentResponse;
 
 public interface PaymentService {
-    CreatePaymentIntentResponse createPaymentIntent(CreatePaymentIntentRequest request);
-    Purchase confirmPayment(ConfirmPaymentRequest request);
+    CreatePaymentIntentResponse createPaymentIntent(String email, CreatePaymentIntentRequest request);
+    Purchase confirmPayment(String email, ConfirmPaymentRequest request);
 }

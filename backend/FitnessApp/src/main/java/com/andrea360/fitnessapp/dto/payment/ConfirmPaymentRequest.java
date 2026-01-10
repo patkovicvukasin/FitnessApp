@@ -13,9 +13,6 @@ public class ConfirmPaymentRequest {
     @NotBlank(message = "Payment Intent ID is required")
     private String paymentIntentId;
 
-    @NotNull(message = "Member ID is required")
-    private Long memberId;
-
     @NotNull(message = "Training type ID is required")
     private Long trainingTypeId;
 

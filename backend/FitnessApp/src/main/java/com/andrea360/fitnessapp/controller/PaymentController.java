@@ -9,6 +9,7 @@ import com.andrea360.fitnessapp.service.payment.PaymentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,18 +23,22 @@ public class PaymentController {
     @PreAuthorize("hasRole('MEMBER')")
     @PostMapping("/create-intent")
     public CreatePaymentIntentResponse createPaymentIntent(
-            @Valid @RequestBody CreatePaymentIntentRequest request
+            @Valid @RequestBody CreatePaymentIntentRequest request,
+            Authentication auth
     ) {
-        return paymentService.createPaymentIntent(request);
+        String email = auth.getName();
+        return paymentService.createPaymentIntent(email, request);
     }
 
     @PreAuthorize("hasRole('MEMBER')")
     @PostMapping("/confirm")
     public PurchaseResponse confirmPayment(
-            @Valid @RequestBody ConfirmPaymentRequest request
+            @Valid @RequestBody ConfirmPaymentRequest request,
+            Authentication auth
     ) {
+        String email = auth.getName();
         return purchaseMapper.toResponse(
-                paymentService.confirmPayment(request)
+                paymentService.confirmPayment(email, request)
         );
     }
 }

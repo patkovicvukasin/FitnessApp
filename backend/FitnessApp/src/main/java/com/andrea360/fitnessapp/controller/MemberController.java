@@ -34,14 +34,6 @@ public class MemberController {
         );
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
-    @GetMapping("/{id}")
-    public MemberResponse getById(@PathVariable Long id) {
-        return memberMapper.toResponse(
-                memberService.getById(id)
-        );
-    }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/by-location/{locationId}")
     public List<MemberResponse> getByLocation(@PathVariable Long locationId) {

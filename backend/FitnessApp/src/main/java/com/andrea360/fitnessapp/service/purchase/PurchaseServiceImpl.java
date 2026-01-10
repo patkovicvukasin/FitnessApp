@@ -1,7 +1,9 @@
 package com.andrea360.fitnessapp.service.purchase;
 
+import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.exception.purchase.ForbiddenPurchaseException;
 import com.andrea360.fitnessapp.model.*;
+import com.andrea360.fitnessapp.repository.MemberRepository;
 import com.andrea360.fitnessapp.repository.PurchaseRepository;
 import com.andrea360.fitnessapp.repository.UserRepository;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
@@ -22,6 +24,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     private final MemberService memberService;
     private final TrainingTypeService trainingTypeService;
     private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public Purchase createPurchase(
@@ -46,19 +49,14 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public List<Purchase> getPurchasesForMember(Long memberId) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        User currentUser = userRepository.findByEmail(email).orElseThrow();
+    public List<Purchase> getMyPurchases(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
 
-        if (currentUser.getRole() == Role.MEMBER) {
-            Member currentMember = memberService.findByUserId(currentUser.getId()).orElseThrow();
-            if (!currentMember.getId().equals(memberId)) {
-                throw new ForbiddenPurchaseException("You can only view your own purchases");
-            }
-        }
+        Member member = memberRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new NotFoundException("Member not found"));
 
-        return purchaseRepository.findByMemberId(memberId);
+        return purchaseRepository.findByMemberId(member.getId());
     }
 
     @Override

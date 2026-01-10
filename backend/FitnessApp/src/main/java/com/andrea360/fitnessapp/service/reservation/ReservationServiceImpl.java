@@ -31,7 +31,14 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional
-    public Reservation reserveSession(Long memberId, Long trainingSessionId) {
+    public Reservation reserveSession(String email, Long trainingSessionId) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        Member member = memberRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new NotFoundException("Member not found"));
+
+        Long memberId = member.getId();
 
         TrainingSession session = trainingSessionRepository.findById(trainingSessionId)
                 .orElseThrow(() -> new NotFoundException("Training session not found"));
@@ -78,8 +85,14 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getReservationsForMember(Long memberId) {
-        return reservationRepository.findByMemberId(memberId);
+    public List<Reservation> getMyReservations(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        Member member = memberRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new NotFoundException("Member not found"));
+
+        return reservationRepository.findByMemberId(member.getId());
     }
 
     @Override
@@ -130,11 +143,6 @@ public class ReservationServiceImpl implements ReservationService {
         purchase.setRemaining(purchase.getRemaining() + 1);
 
         reservationRepository.delete(reservation);
-    }
-
-    @Override
-    public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
     }
 
     @Override

@@ -9,9 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 public class CreateReservationRequest {
 
-    @NotNull(message = "Member ID is required")
-    private Long memberId;
-
     @NotNull(message = "Training session ID is required")
     private Long trainingSessionId;
 }

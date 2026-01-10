@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationResponse {
+public class EmployeeReservationResponse {
 
     private Long id;
     private String memberFirstName;
