@@ -2,7 +2,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 export default function MemberDashboard() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,8 +21,8 @@ export default function MemberDashboard() {
         paddingBottom: '20px'
       }}>
         <div>
-          <h1 style={{ margin: '0 0 10px 0' }}>Member Dashboard</h1>
-          <p style={{ margin: 0, color: '#666' }}>Welcome, {user?.email}</p>
+          <h1 style={{ margin: '0 0 10px 0' }}>Panel člana</h1>
+          <p style={{ margin: 0, color: '#666' }}>Dobrodošli</p>
         </div>
         <button
           onClick={handleLogout}
@@ -36,7 +36,7 @@ export default function MemberDashboard() {
             fontWeight: 'bold'
           }}
         >
-          Logout
+          Izloguj se
         </button>
       </div>
 
@@ -56,9 +56,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('My Purchases - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>💳 My Purchases</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>💳 Moje kupovine</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            View my training credits
+            Pogledaj svoje kupovine treninga
           </p>
         </div>
 
@@ -73,9 +73,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Buy Training - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>🛒 Buy Training</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>🛒 Kupi trening</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Purchase training credits
+            Kupi kredite za trening 
           </p>
         </div>
 
@@ -90,9 +90,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('My Reservations - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>📅 My Reservations</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>📅 Moje rezervacije</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            View my booked sessions
+            Pogledaj svoje rezervisane termine
           </p>
         </div>
 
@@ -107,9 +107,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Create Reservation - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>➕ Book Session</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>➕ Kreiraj rezervaciju</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Reserve a training session
+            Rezerviši termin treninga
           </p>
         </div>
       </div>

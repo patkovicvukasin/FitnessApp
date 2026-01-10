@@ -2,7 +2,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminDashboard() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,8 +21,8 @@ export default function AdminDashboard() {
         paddingBottom: '20px'
       }}>
         <div>
-          <h1 style={{ margin: '0 0 10px 0' }}>Admin Dashboard</h1>
-          <p style={{ margin: 0, color: '#666' }}>Welcome, {user?.email}</p>
+          <h1 style={{ margin: '0 0 10px 0' }}>Admin Panel</h1>
+          <p style={{ margin: 0, color: '#666' }}>Dobrodošli</p>
         </div>
         <button
           onClick={handleLogout}
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
             fontWeight: 'bold'
           }}
         >
-          Logout
+          Izloguj se
         </button>
       </div>
 
@@ -56,9 +56,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Create Location - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>📍 Create Location</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>📍 Dodaj novu lokaciju</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Add new gym location
+            Kreiraj novu lokaciju teretane
           </p>
         </div>
 
@@ -73,9 +73,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Create Employee - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👤 Create Employee</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👤 Dodaj zaposlenog</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Add new employee
+            Dodaj novog zaposlenog
           </p>
         </div>
 
@@ -90,9 +90,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('All Employees - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👥 All Employees</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👥 Svi zaposleni</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            View all employees
+            Pogledaj sve zaposlene
           </p>
         </div>
 
@@ -107,9 +107,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('All Members - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏋️ All Members</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏋️ Svi članovi</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            View all members
+            Pogledaj sve članove
           </p>
         </div>
 
@@ -124,9 +124,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('All Locations - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏢 All Locations</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏢 Sve lokacije</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            View all locations
+            Pogledaj sve lokacije
           </p>
         </div>
       </div>

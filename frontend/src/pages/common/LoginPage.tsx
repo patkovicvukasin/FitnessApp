@@ -58,7 +58,7 @@ export default function LoginPage() {
         width: '400px'
       }}>
         <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
-          Fitness App Login
+          Fitness App Prijava
         </h1>
         
         <form onSubmit={handleSubmit}>
@@ -83,7 +83,7 @@ export default function LoginPage() {
           
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-              Password
+              Lozinka
             </label>
             <input
               type="password"

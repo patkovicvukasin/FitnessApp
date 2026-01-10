@@ -2,7 +2,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 export default function EmployeeDashboard() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,8 +21,8 @@ export default function EmployeeDashboard() {
         paddingBottom: '20px'
       }}>
         <div>
-          <h1 style={{ margin: '0 0 10px 0' }}>Employee Dashboard</h1>
-          <p style={{ margin: 0, color: '#666' }}>Welcome, {user?.email}</p>
+          <h1 style={{ margin: '0 0 10px 0' }}>Panel zaposlenog</h1>
+          <p style={{ margin: 0, color: '#666' }}>Dobrodošli</p>
         </div>
         <button
           onClick={handleLogout}
@@ -36,7 +36,7 @@ export default function EmployeeDashboard() {
             fontWeight: 'bold'
           }}
         >
-          Logout
+          Izloguj se
         </button>
       </div>
 
@@ -56,9 +56,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Create Member - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 Create Member</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 Kreiraj člana</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Add new member
+            Dodaj novog člana teretane
           </p>
         </div>
 
@@ -73,9 +73,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Create Training Type - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 Create Training Type</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 Kreiraj tip treninga</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Add new training type
+            Dodaj novi tip treninga
           </p>
         </div>
         <div style={{
@@ -89,9 +89,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('Create Session - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 Create Session</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 Kreiraj termin</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Schedule new training session
+            Zakazivanje novog termina treninga
           </p>
         </div>
 
@@ -106,9 +106,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => alert('My Sessions - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 My Sessions</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 Moji termini</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            View my training sessions
+            Pogledaj svoje termine treninga
           </p>
         </div>
       </div>

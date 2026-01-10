@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import HomePage from './pages/public/HomePage';
+import LocationsPage from './pages/public/LocationsPage';
+import TrainingTypesPage from './pages/public/TrainingTypesPage';
 import LoginPage from './pages/common/LoginPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import EmployeeDashboard from './pages/employee/EmployeeDashboard';
@@ -15,6 +18,9 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/locations" element={<LocationsPage />} />
+            <Route path="/training-types" element={<TrainingTypesPage />} />
             <Route path="/login" element={<LoginPage />} />
             
             <Route
@@ -44,9 +50,8 @@ function App() {
               }
             />
 
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route path="/unauthorized" element={<div style={{ padding: '40px', textAlign: 'center' }}><h1>Unauthorized</h1><p>You don't have permission to access this page.</p></div>} />
-            <Route path="*" element={<Navigate to="/login" replace />} />
+            <Route path="/unauthorized" element={<div style={{ padding: '40px', textAlign: 'center' }}><h1>Nemate pristup</h1></div>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
