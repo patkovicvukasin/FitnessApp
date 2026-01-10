@@ -19,4 +19,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             LocalDateTime endTime,
             LocalDateTime startTime
     );
+
+    List<Reservation> findByTrainingSessionId(Long trainingSessionId);
 }

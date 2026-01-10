@@ -13,6 +13,8 @@ public class ReservationMapper {
 
         return new ReservationResponse(
                 reservation.getId(),
+                reservation.getMember().getFirstName(),
+                reservation.getMember().getLastName(),
                 reservation.getTrainingSession().getId(),
                 reservation.getReservedAt()
         );

@@ -7,6 +7,7 @@ import com.andrea360.fitnessapp.service.reservation.ReservationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,7 +60,13 @@ public class ReservationController {
         reservationService.cancelReservation(reservationId);
     }
 
-    //zaposleni da vidi spisak rezevacija za svoju sesiju i vidi imena onih cije
-    //su rez i da otkaze rez(vec moze)
-
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    @GetMapping("/by-session/{sessionId}")
+    public List<ReservationResponse> getBySession(@PathVariable Long sessionId, Authentication auth) {
+        String email = auth.getName();
+        return reservationService.getReservationsForSession(sessionId, email)
+                .stream()
+                .map(reservationMapper::toResponse)
+                .toList();
+    }
 }

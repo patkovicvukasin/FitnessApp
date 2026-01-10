@@ -1,17 +1,17 @@
 package com.andrea360.fitnessapp.service.reservation;
 
+import com.andrea360.fitnessapp.exception.auth.AccessDeniedException;
 import com.andrea360.fitnessapp.exception.common.BadRequestException;
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.exception.reservation.NoRemainingCreditsException;
 import com.andrea360.fitnessapp.exception.reservation.SessionAlreadyReservedException;
 import com.andrea360.fitnessapp.exception.reservation.SessionFullException;
-import com.andrea360.fitnessapp.model.Purchase;
-import com.andrea360.fitnessapp.model.Reservation;
-import com.andrea360.fitnessapp.model.TrainingSession;
-import com.andrea360.fitnessapp.repository.PurchaseRepository;
-import com.andrea360.fitnessapp.repository.ReservationRepository;
-import com.andrea360.fitnessapp.repository.TrainingSessionRepository;
+import com.andrea360.fitnessapp.model.*;
+import com.andrea360.fitnessapp.repository.*;
+import com.andrea360.fitnessapp.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +25,9 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final TrainingSessionRepository trainingSessionRepository;
     private final PurchaseRepository purchaseRepository;
+    private final EmployeeRepository employeeRepository;
+    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     @Transactional
@@ -101,6 +104,28 @@ public class ReservationServiceImpl implements ReservationService {
             throw new BadRequestException("Cannot cancel a reservation for a session that has already started");
         }
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User currentUser = userRepository.findByEmail(email).orElseThrow();
+
+        if (currentUser.getRole() == Role.EMPLOYEE) {
+            Employee employee = employeeRepository.findByUserId(currentUser.getId())
+                    .orElseThrow(() -> new NotFoundException("Employee not found"));
+
+            if (!session.getEmployee().getId().equals(employee.getId())) {
+                throw new AccessDeniedException("You can only cancel reservations for your own sessions");
+            }
+        }
+
+        if (currentUser.getRole() == Role.MEMBER) {
+            Member member = memberRepository.findByUserId(currentUser.getId())
+                    .orElseThrow(() -> new NotFoundException("Member not found"));
+
+            if (!reservation.getMember().getId().equals(member.getId())) {
+                throw new AccessDeniedException("You can only cancel your own reservations");
+            }
+        }
+
         Purchase purchase = reservation.getPurchase();
         purchase.setRemaining(purchase.getRemaining() + 1);
 
@@ -110,5 +135,24 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
+    }
+
+    @Override
+    public List<Reservation> getReservationsForSession(Long sessionId, String currentUserEmail) {
+        TrainingSession session = trainingSessionRepository.findById(sessionId)
+                .orElseThrow(() -> new NotFoundException("Training session not found"));
+
+        User currentUser = userRepository.findByEmail(currentUserEmail)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        if (currentUser.getRole() == Role.EMPLOYEE) {
+            Employee employee = employeeRepository.findByUserId(currentUser.getId())
+                    .orElseThrow(() -> new NotFoundException("Employee not found"));
+
+            if (!session.getEmployee().getId().equals(employee.getId())) {
+                throw new AccessDeniedException("You can only view reservations for your own sessions");
+            }
+        }
+        return reservationRepository.findByTrainingSessionId(sessionId);
     }
 }

@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 public class ReservationResponse {
 
     private Long id;
+    private String memberFirstName;
+    private String memberLastName;
     private Long trainingSessionId;
     private LocalDateTime reservedAt;
 }

@@ -7,6 +7,7 @@ import com.andrea360.fitnessapp.service.trainingSession.TrainingSessionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +35,6 @@ public class TrainingSessionController {
         );
     }
 
-    //da kada employee pritisne na svoju sesiju vidi spisak rezervacija za sesiju
-    // (ne treba da ostane public)
     @GetMapping("/{id}")
     public TrainingSessionResponse getById(@PathVariable Long id) {
         return trainingSessionMapper.toResponse(
@@ -43,8 +42,6 @@ public class TrainingSessionController {
         );
     }
 
-    //kada koirsnik izabere tip treninga valjda ovaj endpoint treba da mu dovuce dostupne sesije
-    //ali mora onda da se doda u ovaj upit da se trazi po tipu treninga
     @GetMapping("/by-location/{locationId}")
     public List<TrainingSessionResponse> getByLocation(@PathVariable Long locationId) {
         return trainingSessionService.getByLocation(locationId)
@@ -62,5 +59,13 @@ public class TrainingSessionController {
                 .toList();
     }
 
-    //da zaposleni vidi spisak svojih sesija i da vidi br preostalih mesta
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    @GetMapping("/my-sessions")
+    public List<TrainingSessionResponse> getMySessions(Authentication auth) {
+        String email = auth.getName();
+        return trainingSessionService.getMySessionsForEmployee(email)
+                .stream()
+                .map(trainingSessionMapper::toResponse)
+                .toList();
+    }
 }

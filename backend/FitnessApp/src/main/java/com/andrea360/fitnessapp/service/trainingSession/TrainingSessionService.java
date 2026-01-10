@@ -20,5 +20,8 @@ public interface TrainingSessionService {
     List<TrainingSession> getByLocation(Long locationId);
 
     List<TrainingSession> getByEmployee(Long employeeId);
+
+    List<TrainingSession> getMySessionsForEmployee(String email);
+
 }
 

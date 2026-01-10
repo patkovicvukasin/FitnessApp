@@ -2,11 +2,10 @@ package com.andrea360.fitnessapp.service.trainingSession;
 
 import com.andrea360.fitnessapp.exception.common.BadRequestException;
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
-import com.andrea360.fitnessapp.model.Employee;
-import com.andrea360.fitnessapp.model.TrainingType;
-import com.andrea360.fitnessapp.model.Location;
-import com.andrea360.fitnessapp.model.TrainingSession;
+import com.andrea360.fitnessapp.model.*;
+import com.andrea360.fitnessapp.repository.EmployeeRepository;
 import com.andrea360.fitnessapp.repository.TrainingSessionRepository;
+import com.andrea360.fitnessapp.repository.UserRepository;
 import com.andrea360.fitnessapp.service.employee.EmployeeService;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
 import com.andrea360.fitnessapp.service.location.LocationService;
@@ -23,6 +22,8 @@ import java.util.List;
 public class TrainingSessionServiceImpl implements TrainingSessionService {
 
     private final TrainingSessionRepository trainingSessionRepository;
+    private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
     private final LocationService locationService;
     private final TrainingTypeService trainingTypeService;
     private final EmployeeService employeeService;
@@ -80,5 +81,16 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     @Override
     public List<TrainingSession> getByEmployee(Long employeeId) {
         return trainingSessionRepository.findByEmployeeId(employeeId);
+    }
+
+    @Override
+    public List<TrainingSession> getMySessionsForEmployee(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        Employee employee = employeeRepository.findByUserId(user.getId())
+                .orElseThrow(() -> new NotFoundException("Employee not found"));
+
+        return trainingSessionRepository.findByEmployeeId(employee.getId());
     }
 }

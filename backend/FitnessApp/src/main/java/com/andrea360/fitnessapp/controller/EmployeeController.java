@@ -33,14 +33,6 @@ public class EmployeeController {
         );
     }
 
-//    @PreAuthorize("hasAnyRole('ADMIN')")
-//    @GetMapping("/{id}")
-//    public EmployeeResponse getById(@PathVariable Long id) {
-//        return employeeMapper.toResponse(
-//                employeeService.getById(id)
-//        );
-//    }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/by-location/{locationId}")
     public List<EmployeeResponse> getByLocation(@PathVariable Long locationId) {

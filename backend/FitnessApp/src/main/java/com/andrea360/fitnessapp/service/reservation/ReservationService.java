@@ -15,4 +15,7 @@ public interface ReservationService {
     void cancelReservation(Long reservationId);
 
     List<Reservation> getAllReservations();
+
+    List<Reservation> getReservationsForSession(Long sessionId, String currentUserEmail);
+
 }
