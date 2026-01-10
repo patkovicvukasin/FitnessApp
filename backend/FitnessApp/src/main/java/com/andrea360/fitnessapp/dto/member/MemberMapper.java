@@ -15,7 +15,8 @@ public class MemberMapper {
                 member.getId(),
                 member.getFirstName(),
                 member.getLastName(),
-                member.getLocation().getId()
+                member.getLocation().getName(),
+                member.getLocation().getAddress()
         );
     }
 }

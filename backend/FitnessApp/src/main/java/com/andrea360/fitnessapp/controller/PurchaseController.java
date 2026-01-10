@@ -19,6 +19,8 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
     private final PurchaseMapper purchaseMapper;
 
+
+    @PreAuthorize("hasAnyRole('MEMBER')")
     @GetMapping("/member/{memberId}")
     public List<PurchaseResponse> getForMember(@PathVariable Long memberId) {
         return purchaseService.getPurchasesForMember(memberId)

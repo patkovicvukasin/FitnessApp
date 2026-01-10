@@ -34,6 +34,8 @@ public class TrainingSessionController {
         );
     }
 
+    //da kada employee pritisne na svoju sesiju vidi spisak rezervacija za sesiju
+    // (ne treba da ostane public)
     @GetMapping("/{id}")
     public TrainingSessionResponse getById(@PathVariable Long id) {
         return trainingSessionMapper.toResponse(
@@ -41,6 +43,8 @@ public class TrainingSessionController {
         );
     }
 
+    //kada koirsnik izabere tip treninga valjda ovaj endpoint treba da mu dovuce dostupne sesije
+    //ali mora onda da se doda u ovaj upit da se trazi po tipu treninga
     @GetMapping("/by-location/{locationId}")
     public List<TrainingSessionResponse> getByLocation(@PathVariable Long locationId) {
         return trainingSessionService.getByLocation(locationId)
@@ -48,4 +52,15 @@ public class TrainingSessionController {
                 .map(trainingSessionMapper::toResponse)
                 .toList();
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/by-employee/{employeeId}")
+    public List<TrainingSessionResponse> getByEmployee(@PathVariable Long employeeId) {
+        return trainingSessionService.getByEmployee(employeeId)
+                .stream()
+                .map(trainingSessionMapper::toResponse)
+                .toList();
+    }
+
+    //da zaposleni vidi spisak svojih sesija i da vidi br preostalih mesta
 }

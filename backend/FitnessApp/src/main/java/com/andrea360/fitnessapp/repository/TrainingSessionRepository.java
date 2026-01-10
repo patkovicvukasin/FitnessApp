@@ -14,4 +14,6 @@ public interface TrainingSessionRepository extends JpaRepository<TrainingSession
             LocalDateTime endTime,
             LocalDateTime startTime
     );
+
+    List<TrainingSession> findByEmployeeId(Long employeeId);
 }

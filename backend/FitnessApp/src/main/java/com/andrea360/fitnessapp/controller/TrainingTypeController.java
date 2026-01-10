@@ -30,12 +30,12 @@ public class TrainingTypeController {
         );
     }
 
-    @GetMapping("/{id}")
-    public TrainingTypeResponse getById(@PathVariable Long id) {
-        return trainingTypeMapper.toResponse(
-                trainingTypeService.getById(id)
-        );
-    }
+//    @GetMapping("/{id}")
+//    public TrainingTypeResponse getById(@PathVariable Long id) {
+//        return trainingTypeMapper.toResponse(
+//                trainingTypeService.getById(id)
+//        );
+//    }
 
     @GetMapping
     public List<TrainingTypeResponse> getAll() {

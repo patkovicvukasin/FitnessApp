@@ -16,5 +16,7 @@ public interface EmployeeService {
     Employee getById(Long id);
 
     List<Employee> getByLocation(Long locationId);
+
+    List<Employee> getAll();
 }
 

@@ -60,4 +60,9 @@ public class MemberServiceImpl implements MemberService {
     public Optional<Member> findByUserId(Long userId) {
         return memberRepository.findByUserId(userId);
     }
+
+    @Override
+    public List<Member> getAll() {
+        return memberRepository.findAll();
+    }
 }

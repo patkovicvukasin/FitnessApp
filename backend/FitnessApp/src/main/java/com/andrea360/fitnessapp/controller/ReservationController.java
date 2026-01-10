@@ -39,6 +39,7 @@ public class ReservationController {
                 .toList();
     }
 
+    @PreAuthorize("hasAnyRole('MEMBER')")
     @GetMapping("/member/{memberId}")
     public List<ReservationResponse> getForMember(@PathVariable Long memberId) {
         return reservationService.getReservationsForMember(memberId)
@@ -52,8 +53,13 @@ public class ReservationController {
         return reservationService.getAvailableSlots(trainingSessionId);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE', 'MEMBER')")
     @DeleteMapping("/{reservationId}")
     public void cancel(@PathVariable Long reservationId) {
         reservationService.cancelReservation(reservationId);
     }
+
+    //zaposleni da vidi spisak rezevacija za svoju sesiju i vidi imena onih cije
+    //su rez i da otkaze rez(vec moze)
+
 }

@@ -18,5 +18,7 @@ public interface TrainingSessionService {
     TrainingSession getById(Long id);
 
     List<TrainingSession> getByLocation(Long locationId);
+
+    List<TrainingSession> getByEmployee(Long employeeId);
 }
 

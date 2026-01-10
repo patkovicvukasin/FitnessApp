@@ -15,7 +15,8 @@ public class EmployeeMapper {
                 employee.getId(),
                 employee.getFirstName(),
                 employee.getLastName(),
-                employee.getLocation().getId()
+                employee.getLocation().getName(),
+                employee.getLocation().getAddress()
         );
     }
 }

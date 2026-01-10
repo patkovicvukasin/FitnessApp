@@ -30,6 +30,7 @@ public class LocationController {
         );
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public LocationResponse getById(@PathVariable Long id) {
         return locationMapper.toResponse(

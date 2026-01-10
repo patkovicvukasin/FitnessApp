@@ -55,4 +55,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getByLocation(Long locationId) {
         return employeeRepository.findByLocationId(locationId);
     }
+
+    @Override
+    public List<Employee> getAll() {
+        return employeeRepository.findAll();
+    }
 }

@@ -33,18 +33,27 @@ public class EmployeeController {
         );
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @GetMapping("/{id}")
-    public EmployeeResponse getById(@PathVariable Long id) {
-        return employeeMapper.toResponse(
-                employeeService.getById(id)
-        );
-    }
+//    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @GetMapping("/{id}")
+//    public EmployeeResponse getById(@PathVariable Long id) {
+//        return employeeMapper.toResponse(
+//                employeeService.getById(id)
+//        );
+//    }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/by-location/{locationId}")
     public List<EmployeeResponse> getByLocation(@PathVariable Long locationId) {
         return employeeService.getByLocation(locationId)
+                .stream()
+                .map(employeeMapper::toResponse)
+                .toList();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public List<EmployeeResponse> getAll() {
+        return employeeService.getAll()
                 .stream()
                 .map(employeeMapper::toResponse)
                 .toList();

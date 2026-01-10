@@ -19,5 +19,7 @@ public interface MemberService {
     List<Member> getByLocation(Long locationId);
 
     Optional<Member> findByUserId(Long id);
+
+    List<Member> getAll();
 }
 

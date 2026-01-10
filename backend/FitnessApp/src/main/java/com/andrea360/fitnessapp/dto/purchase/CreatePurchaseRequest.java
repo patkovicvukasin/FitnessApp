@@ -19,6 +19,5 @@ public class CreatePurchaseRequest {
     @Positive(message = "Quantity must be greater than zero")
     private int quantity;
 
-    //null for now
     private String stripePaymentIntentId;
 }

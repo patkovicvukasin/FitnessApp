@@ -76,4 +76,9 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     public List<TrainingSession> getByLocation(Long locationId) {
         return trainingSessionRepository.findByLocationId(locationId);
     }
+
+    @Override
+    public List<TrainingSession> getByEmployee(Long employeeId) {
+        return trainingSessionRepository.findByEmployeeId(employeeId);
+    }
 }

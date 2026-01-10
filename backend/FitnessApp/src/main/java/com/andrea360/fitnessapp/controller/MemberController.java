@@ -1,5 +1,6 @@
 package com.andrea360.fitnessapp.controller;
 
+import com.andrea360.fitnessapp.dto.employee.EmployeeResponse;
 import com.andrea360.fitnessapp.dto.member.CreateMemberRequest;
 import com.andrea360.fitnessapp.dto.member.MemberMapper;
 import com.andrea360.fitnessapp.dto.member.MemberResponse;
@@ -41,10 +42,19 @@ public class MemberController {
         );
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/by-location/{locationId}")
     public List<MemberResponse> getByLocation(@PathVariable Long locationId) {
         return memberService.getByLocation(locationId)
+                .stream()
+                .map(memberMapper::toResponse)
+                .toList();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public List<MemberResponse> getAll() {
+        return memberService.getAll()
                 .stream()
                 .map(memberMapper::toResponse)
                 .toList();
