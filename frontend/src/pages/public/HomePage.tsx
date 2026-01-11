@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div style={{
@@ -10,8 +13,16 @@ export default function HomePage() {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100vh',
-      backgroundColor: '#a9a5a5'
+      position: 'relative'
     }}>
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px'
+      }}>
+        <LanguageSwitcher />
+      </div>
+
       <div style={{
         textAlign: 'center',
         maxWidth: '800px',
@@ -22,14 +33,14 @@ export default function HomePage() {
           marginBottom: '20px',
           color: '#1976d2'
         }}>
-          Dobrodošli u Fitness App
+          {t('home.title')}
         </h1>
         <p style={{
           fontSize: '18px',
           color: '#666',
           marginBottom: '50px'
         }}>
-          Rezervišite termine, pratite svoje treninge i ostvarite svoje fitness ciljeve!
+          {t('home.subtitle')}
         </p>
 
         <div style={{
@@ -55,7 +66,7 @@ export default function HomePage() {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1565c0'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#1976d2'}
           >
-            Prijavi se
+            {t('home.login')}
           </button>
 
           <button
@@ -74,7 +85,7 @@ export default function HomePage() {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1b5e20'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2e7d32'}
           >
-            Vidi lokacije
+            {t('home.viewLocations')}
           </button>
 
           <button
@@ -93,7 +104,7 @@ export default function HomePage() {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e65100'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f57c00'}
           >
-            Vidi tipove treninga
+            {t('home.viewTrainingTypes')}
           </button>
         </div>
       </div>

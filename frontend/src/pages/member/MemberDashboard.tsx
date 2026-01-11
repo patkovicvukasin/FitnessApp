@@ -1,9 +1,12 @@
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 
 export default function MemberDashboard() {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -21,23 +24,26 @@ export default function MemberDashboard() {
         paddingBottom: '20px'
       }}>
         <div>
-          <h1 style={{ margin: '0 0 10px 0' }}>Panel člana</h1>
-          <p style={{ margin: 0, color: '#666' }}>Dobrodošli</p>
+          <h1 style={{ margin: '0 0 10px 0' }}>{t('member.title')}</h1>
+          <p style={{ margin: 0, color: '#666' }}>{t('member.welcome')}</p>
         </div>
-        <button
-          onClick={handleLogout}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#d32f2f',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          Izloguj se
-        </button>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <LanguageSwitcher />
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#d32f2f',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {t('member.logout')}
+          </button>
+        </div>
       </div>
 
       <div style={{
@@ -56,9 +62,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/member/purchases')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>💳 Moje kupovine</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>💳 {t('member.myPurchases')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj svoje kupovine treninga
+            {t('member.myPurchasesDesc')}
           </p>
         </div>
 
@@ -73,9 +79,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/member/purchases/buy')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>🛒 Kupi trening</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>🛒 {t('member.buyTraining')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Kupi kredite za trening 
+            {t('member.buyTrainingDesc')}
           </p>
         </div>
 
@@ -90,9 +96,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/member/reservations')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>📅 Moje rezervacije</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>📅 {t('member.myReservations')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj svoje rezervisane termine
+            {t('member.myReservationsDesc')}
           </p>
         </div>
 
@@ -107,9 +113,9 @@ export default function MemberDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/member/reservations/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>➕ Kreiraj rezervaciju</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>➕ {t('member.createReservation')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Rezerviši termin treninga
+            {t('member.createReservationDesc')}
           </p>
         </div>
       </div>

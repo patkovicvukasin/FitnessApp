@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getAllLocations } from '../../services/locationService';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 import type { Location } from '../../types/Location';
 
 export default function LocationsPage() {
@@ -8,6 +10,7 @@ export default function LocationsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -15,19 +18,19 @@ export default function LocationsPage() {
         const data = await getAllLocations();
         setLocations(data);
       } catch (err) {
-        setError('Greška pri učitavanju lokacija');
+        setError(t('locations.error'));
       } finally {
         setLoading(false);
       }
     };
 
     fetchLocations();
-  }, []);
+  }, [t]);
 
   if (loading) {
     return (
       <div style={{ padding: '40px', textAlign: 'center' }}>
-        <p>Učitavanje...</p>
+        <p>{t('locations.loading')}</p>
       </div>
     );
   }
@@ -40,21 +43,24 @@ export default function LocationsPage() {
         alignItems: 'center',
         marginBottom: '40px'
       }}>
-        <h1 style={{ margin: 0 }}>Naše lokacije</h1>
-        <button
-          onClick={() => navigate('/')}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#666',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          Nazad
-        </button>
+        <h1 style={{ margin: 0 }}>{t('locations.title')}</h1>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <LanguageSwitcher />
+          <button
+            onClick={() => navigate('/')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#666',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {t('locations.back')}
+          </button>
+        </div>
       </div>
 
       {error && (
@@ -96,7 +102,7 @@ export default function LocationsPage() {
 
       {locations.length === 0 && !loading && !error && (
         <p style={{ textAlign: 'center', color: '#666' }}>
-          Trenutno nema dostupnih lokacija.
+          {t('locations.noLocations')}
         </p>
       )}
     </div>

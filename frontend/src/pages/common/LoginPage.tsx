@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 import { login as loginApi, getCurrentUser } from '../../services/authService';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 import type { LoginRequest } from '../../types/Auth';
 
 export default function LoginPage() {
@@ -12,35 +14,36 @@ export default function LoginPage() {
   
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError('');
-  setIsLoading(true);
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
-  try {
-    const credentials: LoginRequest = { email, password };
-    const { token } = await loginApi(credentials);
-    
-    localStorage.setItem('token', token);
-    const user = await getCurrentUser();
-    
-    login(token, user);
-    
-    if (user.role === 'ADMIN') {
-      navigate('/admin');
-    } else if (user.role === 'EMPLOYEE') {
-      navigate('/employee');
-    } else {
-      navigate('/member');
+    try {
+      const credentials: LoginRequest = { email, password };
+      const { token } = await loginApi(credentials);
+      
+      localStorage.setItem('token', token);
+      const user = await getCurrentUser();
+      
+      login(token, user);
+      
+      if (user.role === 'ADMIN') {
+        navigate('/admin');
+      } else if (user.role === 'EMPLOYEE') {
+        navigate('/employee');
+      } else {
+        navigate('/member');
+      }
+      
+    } catch (err: any) {
+      setError(err.response?.data?.message || t('login.error'));
+    } finally {
+      setIsLoading(false);
     }
-    
-  } catch (err: any) {
-    setError(err.response?.data?.message || 'Login failed. Please try again.');
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <div style={{ 
@@ -48,8 +51,17 @@ export default function LoginPage() {
       justifyContent: 'center', 
       alignItems: 'center', 
       minHeight: '100vh',
-      backgroundColor: '#f5f5f5'
+      position: 'relative'
     }}>
+      {/* Language Switcher */}
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px'
+      }}>
+        <LanguageSwitcher />
+      </div>
+
       <div style={{
         backgroundColor: 'white',
         padding: '40px',
@@ -58,13 +70,13 @@ export default function LoginPage() {
         width: '400px'
       }}>
         <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
-          Fitness App Prijava
+          {t('login.title')}
         </h1>
         
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-              Email
+              {t('login.email')}
             </label>
             <input
               type="email"
@@ -83,7 +95,7 @@ export default function LoginPage() {
           
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-              Lozinka
+              {t('login.password')}
             </label>
             <input
               type="password"
@@ -128,7 +140,7 @@ export default function LoginPage() {
               cursor: isLoading ? 'not-allowed' : 'pointer'
             }}
           >
-            {isLoading ? 'Logging in...' : 'Login'}
+            {isLoading ? t('login.loggingIn') : t('login.loginButton')}
           </button>
         </form>
       </div>

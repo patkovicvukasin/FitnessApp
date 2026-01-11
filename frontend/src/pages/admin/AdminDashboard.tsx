@@ -1,9 +1,12 @@
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 
 export default function AdminDashboard() {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -21,26 +24,29 @@ export default function AdminDashboard() {
         paddingBottom: '20px'
       }}>
         <div>
-          <h1 style={{ margin: '0 0 10px 0' }}>Admin Panel</h1>
-          <p style={{ margin: 0, color: '#666' }}>Dobrodošli</p>
+          <h1 style={{ margin: '0 0 10px 0' }}>{t('admin.title')}</h1>
+          <p style={{ margin: 0, color: '#666' }}>{t('admin.welcome')}</p>
         </div>
-        <button
-          onClick={handleLogout}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#d32f2f',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          Izloguj se
-        </button>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <LanguageSwitcher />
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#d32f2f',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {t('admin.logout')}
+          </button>
+        </div>
       </div>
 
-      <h2 style={{ marginBottom: '20px', color: '#1976d2' }}>Admin funkcije</h2>
+      <h2 style={{ marginBottom: '20px', color: '#1976d2' }}>{t('admin.adminFunctions')}</h2>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -58,9 +64,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/admin/locations/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>📍 Dodaj lokaciju</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>📍 {t('admin.addLocation')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Kreiraj novu lokaciju teretane
+            {t('admin.addLocationDesc')}
           </p>
         </div>
 
@@ -75,9 +81,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/admin/employees/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👤 Dodaj zaposlenog</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👤 {t('admin.addEmployee')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Dodaj novog zaposlenog
+            {t('admin.addEmployeeDesc')}
           </p>
         </div>
 
@@ -92,9 +98,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/admin/employees')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👥 Svi zaposleni</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👥 {t('admin.allEmployees')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj sve zaposlene
+            {t('admin.allEmployeesDesc')}
           </p>
         </div>
 
@@ -109,9 +115,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/admin/members')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏋️ Svi članovi</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏋️ {t('admin.allMembers')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj sve članove
+            {t('admin.allMembersDesc')}
           </p>
         </div>
 
@@ -126,14 +132,14 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/admin/locations')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏢 Sve lokacije</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏢 {t('admin.allLocations')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj sve lokacije
+            {t('admin.allLocationsDesc')}
           </p>
         </div>
       </div>
 
-      <h2 style={{ marginBottom: '20px', color: '#2e7d32' }}>Upravljanje treninzima</h2>
+      <h2 style={{ marginBottom: '20px', color: '#2e7d32' }}>{t('admin.trainingManagement')}</h2>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -150,9 +156,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/members/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 Dodaj člana</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 {t('admin.addMember')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Kreiraj novog člana
+            {t('admin.addMemberDesc')}
           </p>
         </div>
 
@@ -167,9 +173,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/training-types/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 Dodaj tip treninga</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 {t('admin.addTrainingType')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Kreiraj novi tip treninga
+            {t('admin.addTrainingTypeDesc')}
           </p>
         </div>
 
@@ -184,9 +190,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/sessions/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 Dodaj sesiju</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 {t('admin.addSession')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Zakaži novu trening sesiju
+            {t('admin.addSessionDesc')}
           </p>
         </div>
 
@@ -201,9 +207,9 @@ export default function AdminDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/sessions')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 Moje sesije</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 {t('admin.mySessions')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj svoje sesije
+            {t('admin.mySessionsDesc')}
           </p>
         </div>
       </div>

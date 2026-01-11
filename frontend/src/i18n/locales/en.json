@@ -1,0 +1,82 @@
+{
+  "home": {
+    "title": "Welcome to Fitness App",
+    "subtitle": "Book sessions, track your workouts, and achieve your fitness goals!",
+    "login": "Log In",
+    "viewLocations": "View Locations",
+    "viewTrainingTypes": "View Training Types"
+  },
+  "login": {
+    "title": "Fitness App Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "loggingIn": "Logging in...",
+    "error": "Login failed. Please try again."
+  },
+  "locations": {
+    "title": "Our Locations",
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Error loading locations",
+    "noLocations": "No locations available at the moment."
+  },
+  "trainingTypes": {
+    "title": "Training Types",
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Error loading training types",
+    "noTypes": "No training types available at the moment."
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "welcome": "Welcome",
+    "logout": "Log Out",
+    "adminFunctions": "Admin Functions",
+    "trainingManagement": "Training Management",
+    "addLocation": "Add Location",
+    "addLocationDesc": "Create a new gym location",
+    "addEmployee": "Add Employee",
+    "addEmployeeDesc": "Add a new employee",
+    "allEmployees": "All Employees",
+    "allEmployeesDesc": "View all employees",
+    "allMembers": "All Members",
+    "allMembersDesc": "View all members",
+    "allLocations": "All Locations",
+    "allLocationsDesc": "View all locations",
+    "addMember": "Add Member",
+    "addMemberDesc": "Create a new member",
+    "addTrainingType": "Add Training Type",
+    "addTrainingTypeDesc": "Create a new training type",
+    "addSession": "Add Session",
+    "addSessionDesc": "Schedule a new training session",
+    "mySessions": "My Sessions",
+    "mySessionsDesc": "View your sessions"
+  },
+  "employee": {
+    "title": "Employee Panel",
+    "welcome": "Welcome",
+    "logout": "Log Out",
+    "createMember": "Create Member",
+    "createMemberDesc": "Add a new gym member",
+    "createTrainingType": "Create Training Type",
+    "createTrainingTypeDesc": "Add a new training type",
+    "createSession": "Create Session",
+    "createSessionDesc": "Schedule a new training session",
+    "mySessions": "My Sessions",
+    "mySessionsDesc": "View your training sessions"
+  },
+  "member": {
+    "title": "Member Panel",
+    "welcome": "Welcome",
+    "logout": "Log Out",
+    "myPurchases": "My Purchases",
+    "myPurchasesDesc": "View your training purchases",
+    "buyTraining": "Buy Training",
+    "buyTrainingDesc": "Purchase training credits",
+    "myReservations": "My Reservations",
+    "myReservationsDesc": "View your booked sessions",
+    "createReservation": "Create Reservation",
+    "createReservationDesc": "Book a training session"
+  }
+}

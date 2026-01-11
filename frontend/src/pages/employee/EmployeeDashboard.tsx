@@ -1,9 +1,12 @@
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 
 export default function EmployeeDashboard() {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     logout();
@@ -21,23 +24,26 @@ export default function EmployeeDashboard() {
         paddingBottom: '20px'
       }}>
         <div>
-          <h1 style={{ margin: '0 0 10px 0' }}>Panel zaposlenog</h1>
-          <p style={{ margin: 0, color: '#666' }}>Dobrodošli</p>
+          <h1 style={{ margin: '0 0 10px 0' }}>{t('employee.title')}</h1>
+          <p style={{ margin: 0, color: '#666' }}>{t('employee.welcome')}</p>
         </div>
-        <button
-          onClick={handleLogout}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#d32f2f',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          Izloguj se
-        </button>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <LanguageSwitcher />
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#d32f2f',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {t('employee.logout')}
+          </button>
+        </div>
       </div>
 
       <div style={{
@@ -56,9 +62,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/members/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 Kreiraj člana</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 {t('employee.createMember')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Dodaj novog člana teretane
+            {t('employee.createMemberDesc')}
           </p>
         </div>
 
@@ -73,9 +79,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/training-types/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 Kreiraj tip treninga</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 {t('employee.createTrainingType')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Dodaj novi tip treninga
+            {t('employee.createTrainingTypeDesc')}
           </p>
         </div>
 
@@ -90,9 +96,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/sessions/create')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 Kreiraj termin</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 {t('employee.createSession')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Zakazivanje novog termina treninga
+            {t('employee.createSessionDesc')}
           </p>
         </div>
 
@@ -107,9 +113,9 @@ export default function EmployeeDashboard() {
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
         onClick={() => navigate('/employee/sessions')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 Moji termini</h3>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 {t('employee.mySessions')}</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-            Pogledaj svoje termine treninga
+            {t('employee.mySessionsDesc')}
           </p>
         </div>
       </div>

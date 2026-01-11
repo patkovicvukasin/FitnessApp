@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getAllTrainingTypes } from '../../services/trainingTypeService';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 import type { TrainingType } from '../../types/TrainingType';
 
 export default function TrainingTypesPage() {
@@ -8,6 +10,7 @@ export default function TrainingTypesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchTrainingTypes = async () => {
@@ -15,19 +18,19 @@ export default function TrainingTypesPage() {
         const data = await getAllTrainingTypes();
         setTrainingTypes(data);
       } catch (err) {
-        setError('Greška pri učitavanju tipova treninga');
+        setError(t('trainingTypes.error'));
       } finally {
         setLoading(false);
       }
     };
 
     fetchTrainingTypes();
-  }, []);
+  }, [t]);
 
   if (loading) {
     return (
       <div style={{ padding: '40px', textAlign: 'center' }}>
-        <p>Učitavanje...</p>
+        <p>{t('trainingTypes.loading')}</p>
       </div>
     );
   }
@@ -40,21 +43,24 @@ export default function TrainingTypesPage() {
         alignItems: 'center',
         marginBottom: '40px'
       }}>
-        <h1 style={{ margin: 0 }}>Tipovi treninga</h1>
-        <button
-          onClick={() => navigate('/')}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#666',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          Nazad
-        </button>
+        <h1 style={{ margin: 0 }}>{t('trainingTypes.title')}</h1>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <LanguageSwitcher />
+          <button
+            onClick={() => navigate('/')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#666',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {t('trainingTypes.back')}
+          </button>
+        </div>
       </div>
 
       {error && (
@@ -101,7 +107,7 @@ export default function TrainingTypesPage() {
 
       {trainingTypes.length === 0 && !loading && !error && (
         <p style={{ textAlign: 'center', color: '#666' }}>
-          Trenutno nema dostupnih tipova treninga.
+          {t('trainingTypes.noTypes')}
         </p>
       )}
     </div>

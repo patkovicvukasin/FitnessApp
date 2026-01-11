@@ -1,0 +1,82 @@
+{
+  "home": {
+    "title": "Dobrodošli u Fitness App",
+    "subtitle": "Rezervišite termine, pratite svoje treninge i ostvarite svoje fitness ciljeve!",
+    "login": "Prijavi se",
+    "viewLocations": "Vidi lokacije",
+    "viewTrainingTypes": "Vidi tipove treninga"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "welcome": "Dobrodošli",
+    "logout": "Izloguj se",
+    "adminFunctions": "Admin funkcije",
+    "trainingManagement": "Upravljanje treninzima",
+    "addLocation": "Dodaj lokaciju",
+    "addLocationDesc": "Kreiraj novu lokaciju teretane",
+    "addEmployee": "Dodaj zaposlenog",
+    "addEmployeeDesc": "Dodaj novog zaposlenog",
+    "allEmployees": "Svi zaposleni",
+    "allEmployeesDesc": "Pogledaj sve zaposlene",
+    "allMembers": "Svi članovi",
+    "allMembersDesc": "Pogledaj sve članove",
+    "allLocations": "Sve lokacije",
+    "allLocationsDesc": "Pogledaj sve lokacije",
+    "addMember": "Dodaj člana",
+    "addMemberDesc": "Kreiraj novog člana",
+    "addTrainingType": "Dodaj tip treninga",
+    "addTrainingTypeDesc": "Kreiraj novi tip treninga",
+    "addSession": "Dodaj sesiju",
+    "addSessionDesc": "Zakaži novu trening sesiju",
+    "mySessions": "Moje sesije",
+    "mySessionsDesc": "Pogledaj svoje sesije"
+  },
+  "employee": {
+    "title": "Panel zaposlenog",
+    "welcome": "Dobrodošli",
+    "logout": "Izloguj se",
+    "createMember": "Kreiraj člana",
+    "createMemberDesc": "Dodaj novog člana teretane",
+    "createTrainingType": "Kreiraj tip treninga",
+    "createTrainingTypeDesc": "Dodaj novi tip treninga",
+    "createSession": "Kreiraj termin",
+    "createSessionDesc": "Zakazivanje novog termina treninga",
+    "mySessions": "Moji termini",
+    "mySessionsDesc": "Pogledaj svoje termine treninga"
+  },
+  "member": {
+    "title": "Panel člana",
+    "welcome": "Dobrodošli",
+    "logout": "Izloguj se",
+    "myPurchases": "Moje kupovine",
+    "myPurchasesDesc": "Pogledaj svoje kupovine treninga",
+    "buyTraining": "Kupi trening",
+    "buyTrainingDesc": "Kupi kredite za trening",
+    "myReservations": "Moje rezervacije",
+    "myReservationsDesc": "Pogledaj svoje rezervisane termine",
+    "createReservation": "Kreiraj rezervaciju",
+    "createReservationDesc": "Rezerviši termin treninga"
+  },
+  "login": {
+    "title": "Fitness App Prijava",
+    "email": "Email",
+    "password": "Lozinka",
+    "loginButton": "Prijavi se",
+    "loggingIn": "Prijavljivanje...",
+    "error": "Prijava neuspešna. Pokušajte ponovo."
+  },
+  "locations": {
+    "title": "Naše lokacije",
+    "back": "Nazad",
+    "loading": "Učitavanje...",
+    "error": "Greška pri učitavanju lokacija",
+    "noLocations": "Trenutno nema dostupnih lokacija."
+  },
+  "trainingTypes": {
+    "title": "Tipovi treninga",
+    "back": "Nazad",
+    "loading": "Učitavanje...",
+    "error": "Greška pri učitavanju tipova treninga",
+    "noTypes": "Trenutno nema dostupnih tipova treninga."
+  }
+}
