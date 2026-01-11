@@ -1,0 +1,2470 @@
+{
+	"info": {
+		"_postman_id": "63bed0b2-8b8a-49ab-9343-f232fc5937f6",
+		"name": "Fitness App API",
+		"description": "API for Fitness Center Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41276033"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "training-types",
+					"item": [
+						{
+							"name": "get All",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/training-types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"training-types"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/training-types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-types"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 8290,\n    \"name\": \"string\",\n    \"price\": 7337.678733201978\n  },\n  {\n    \"id\": 5704,\n    \"name\": \"string\",\n    \"price\": 3093.129614825616\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"price\": 2872.482565570895\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/training-types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"training-types"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"price\": 2872.482565570895\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/training-types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-types"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 2769,\n  \"name\": \"string\",\n  \"price\": 2041.7259646015307\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "training-sessions",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "get By Id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/training-sessions/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-sessions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "5557"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/training-sessions/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"training-sessions",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 5224,\n  \"startTime\": \"1963-09-17T20:14:49.417Z\",\n  \"endTime\": \"1954-07-10T00:15:28.506Z\",\n  \"maxCapacity\": 3551,\n  \"locationName\": \"string\",\n  \"locationAddress\": \"string\",\n  \"trainingTypeName\": \"string\",\n  \"employeeFirstName\": \"string\",\n  \"employeeLastName\": \"string\",\n  \"availableSlots\": 8273\n}"
+										}
+									]
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/training-sessions/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-sessions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "5557"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/training-sessions/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"training-sessions",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "my-sessions",
+							"item": [
+								{
+									"name": "get My Sessions",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/training-sessions/my-sessions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-sessions",
+												"my-sessions"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/training-sessions/my-sessions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"training-sessions",
+														"my-sessions"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": 6467,\n    \"startTime\": \"1998-03-14T19:55:49.691Z\",\n    \"endTime\": \"1966-03-31T02:00:45.686Z\",\n    \"maxCapacity\": 3139,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 359\n  },\n  {\n    \"id\": 3257,\n    \"startTime\": \"1957-08-09T11:51:20.820Z\",\n    \"endTime\": \"2017-04-08T20:51:41.034Z\",\n    \"maxCapacity\": 7184,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 5093\n  }\n]"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-training-type",
+							"item": [
+								{
+									"name": "{trainingTypeId}",
+									"item": [
+										{
+											"name": "get By Training Type",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/training-sessions/by-training-type/:trainingTypeId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"training-sessions",
+														"by-training-type",
+														":trainingTypeId"
+													],
+													"variable": [
+														{
+															"key": "trainingTypeId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/training-sessions/by-training-type/:trainingTypeId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"training-sessions",
+																"by-training-type",
+																":trainingTypeId"
+															],
+															"variable": [
+																{
+																	"key": "trainingTypeId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "[\n  {\n    \"id\": 6467,\n    \"startTime\": \"1998-03-14T19:55:49.691Z\",\n    \"endTime\": \"1966-03-31T02:00:45.686Z\",\n    \"maxCapacity\": 3139,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 359\n  },\n  {\n    \"id\": 3257,\n    \"startTime\": \"1957-08-09T11:51:20.820Z\",\n    \"endTime\": \"2017-04-08T20:51:41.034Z\",\n    \"maxCapacity\": 7184,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 5093\n  }\n]"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-location",
+							"item": [
+								{
+									"name": "{locationId}",
+									"item": [
+										{
+											"name": "get By Location",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/training-sessions/by-location/:locationId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"training-sessions",
+														"by-location",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/training-sessions/by-location/:locationId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"training-sessions",
+																"by-location",
+																":locationId"
+															],
+															"variable": [
+																{
+																	"key": "locationId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "[\n  {\n    \"id\": 6467,\n    \"startTime\": \"1998-03-14T19:55:49.691Z\",\n    \"endTime\": \"1966-03-31T02:00:45.686Z\",\n    \"maxCapacity\": 3139,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 359\n  },\n  {\n    \"id\": 3257,\n    \"startTime\": \"1957-08-09T11:51:20.820Z\",\n    \"endTime\": \"2017-04-08T20:51:41.034Z\",\n    \"maxCapacity\": 7184,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 5093\n  }\n]"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-employee",
+							"item": [
+								{
+									"name": "{employeeId}",
+									"item": [
+										{
+											"name": "get By Employee",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/training-sessions/by-employee/:employeeId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"training-sessions",
+														"by-employee",
+														":employeeId"
+													],
+													"variable": [
+														{
+															"key": "employeeId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/training-sessions/by-employee/:employeeId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"training-sessions",
+																"by-employee",
+																":employeeId"
+															],
+															"variable": [
+																{
+																	"key": "employeeId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "[\n  {\n    \"id\": 6467,\n    \"startTime\": \"1998-03-14T19:55:49.691Z\",\n    \"endTime\": \"1966-03-31T02:00:45.686Z\",\n    \"maxCapacity\": 3139,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 359\n  },\n  {\n    \"id\": 3257,\n    \"startTime\": \"1957-08-09T11:51:20.820Z\",\n    \"endTime\": \"2017-04-08T20:51:41.034Z\",\n    \"maxCapacity\": 7184,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 5093\n  }\n]"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get All 1",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/training-sessions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"training-sessions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/training-sessions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-sessions"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 6467,\n    \"startTime\": \"1998-03-14T19:55:49.691Z\",\n    \"endTime\": \"1966-03-31T02:00:45.686Z\",\n    \"maxCapacity\": 3139,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 359\n  },\n  {\n    \"id\": 3257,\n    \"startTime\": \"1957-08-09T11:51:20.820Z\",\n    \"endTime\": \"2017-04-08T20:51:41.034Z\",\n    \"maxCapacity\": 7184,\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\",\n    \"trainingTypeName\": \"string\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"availableSlots\": 5093\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "create 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"employeeId\": 6995,\n  \"endTime\": \"1976-01-16T10:33:38.761Z\",\n  \"locationId\": 8438,\n  \"startTime\": \"1947-09-01T21:49:58.280Z\",\n  \"trainingTypeId\": 3927,\n  \"maxCapacity\": 9128\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/training-sessions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"training-sessions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"employeeId\": 6995,\n  \"endTime\": \"1976-01-16T10:33:38.761Z\",\n  \"locationId\": 8438,\n  \"startTime\": \"1947-09-01T21:49:58.280Z\",\n  \"trainingTypeId\": 3927,\n  \"maxCapacity\": 9128\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/training-sessions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"training-sessions"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 5224,\n  \"startTime\": \"1963-09-17T20:14:49.417Z\",\n  \"endTime\": \"1954-07-10T00:15:28.506Z\",\n  \"maxCapacity\": 3551,\n  \"locationName\": \"string\",\n  \"locationAddress\": \"string\",\n  \"trainingTypeName\": \"string\",\n  \"employeeFirstName\": \"string\",\n  \"employeeLastName\": \"string\",\n  \"availableSlots\": 8273\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "reservations",
+					"item": [
+						{
+							"name": "my-reservations",
+							"item": [
+								{
+									"name": "get My Reservations",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/reservations/my-reservations",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"reservations",
+												"my-reservations"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/reservations/my-reservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"reservations",
+														"my-reservations"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": 5080,\n    \"trainingTypeName\": \"string\",\n    \"sessionStartTime\": \"1968-04-28T05:59:09.647Z\",\n    \"sessionEndTime\": \"2020-09-07T06:47:14.140Z\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"locationName\": \"string\",\n    \"reservedAt\": \"1980-07-16T20:34:31.564Z\"\n  },\n  {\n    \"id\": 1082,\n    \"trainingTypeName\": \"string\",\n    \"sessionStartTime\": \"1954-02-18T09:39:48.782Z\",\n    \"sessionEndTime\": \"2000-06-11T16:18:25.268Z\",\n    \"employeeFirstName\": \"string\",\n    \"employeeLastName\": \"string\",\n    \"locationName\": \"string\",\n    \"reservedAt\": \"1992-05-22T13:25:11.250Z\"\n  }\n]"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "by-session",
+							"item": [
+								{
+									"name": "{sessionId}",
+									"item": [
+										{
+											"name": "get By Session",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/reservations/by-session/:sessionId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"reservations",
+														"by-session",
+														":sessionId"
+													],
+													"variable": [
+														{
+															"key": "sessionId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/reservations/by-session/:sessionId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"reservations",
+																"by-session",
+																":sessionId"
+															],
+															"variable": [
+																{
+																	"key": "sessionId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "[\n  {\n    \"id\": 8957,\n    \"memberFirstName\": \"string\",\n    \"memberLastName\": \"string\",\n    \"trainingSessionId\": 1954,\n    \"reservedAt\": \"1983-08-11T19:12:28.522Z\"\n  },\n  {\n    \"id\": 986,\n    \"memberFirstName\": \"string\",\n    \"memberLastName\": \"string\",\n    \"trainingSessionId\": 902,\n    \"reservedAt\": \"2004-04-11T03:59:42.723Z\"\n  }\n]"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "available-slots",
+							"item": [
+								{
+									"name": "{trainingSessionId}",
+									"item": [
+										{
+											"name": "get Available Slots",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/reservations/available-slots/:trainingSessionId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"reservations",
+														"available-slots",
+														":trainingSessionId"
+													],
+													"variable": [
+														{
+															"key": "trainingSessionId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/reservations/available-slots/:trainingSessionId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"reservations",
+																"available-slots",
+																":trainingSessionId"
+															],
+															"variable": [
+																{
+																	"key": "trainingSessionId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "2420"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "{reservationId}",
+							"item": [
+								{
+									"name": "cancel",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "5557"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/reservations/:reservationId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"reservations",
+														":reservationId"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "reserve",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"trainingSessionId\": 6898\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"reservations"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"trainingSessionId\": 6898\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/reservations",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"reservations"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 5844,\n  \"trainingTypeName\": \"string\",\n  \"sessionStartTime\": \"2012-02-15T13:07:13.162Z\",\n  \"sessionEndTime\": \"2009-11-02T21:35:12.717Z\",\n  \"employeeFirstName\": \"string\",\n  \"employeeLastName\": \"string\",\n  \"locationName\": \"string\",\n  \"reservedAt\": \"2004-07-11T12:05:26.517Z\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "payments",
+					"item": [
+						{
+							"name": "create-intent",
+							"item": [
+								{
+									"name": "create Payment Intent",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"trainingTypeId\": 6066,\n  \"quantity\": 1291\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/payments/create-intent",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"payments",
+												"create-intent"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"trainingTypeId\": 6066,\n  \"quantity\": 1291\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/payments/create-intent",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"payments",
+														"create-intent"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"clientSecret\": \"string\",\n  \"amount\": 1131\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "confirm",
+							"item": [
+								{
+									"name": "confirm Payment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"paymentIntentId\": \"string\",\n  \"trainingTypeId\": 689,\n  \"quantity\": 1213\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/payments/confirm",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"payments",
+												"confirm"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"paymentIntentId\": \"string\",\n  \"trainingTypeId\": 689,\n  \"quantity\": 1213\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/payments/confirm",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"payments",
+														"confirm"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 5569,\n  \"trainingTypeName\": \"string\",\n  \"trainingTypePrice\": 8576.665175985483,\n  \"totalPrice\": 4382.839830823828,\n  \"quantity\": 6363,\n  \"remaining\": 5581,\n  \"purchasedAt\": \"1975-12-15T14:29:15.275Z\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "members",
+					"item": [
+						{
+							"name": "by-location",
+							"item": [
+								{
+									"name": "{locationId}",
+									"item": [
+										{
+											"name": "get By Location 1",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/members/by-location/:locationId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"members",
+														"by-location",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/members/by-location/:locationId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"members",
+																"by-location",
+																":locationId"
+															],
+															"variable": [
+																{
+																	"key": "locationId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "[\n  {\n    \"id\": 4598,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  },\n  {\n    \"id\": 7335,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  }\n]"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get All 2",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/members",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/members",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"members"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 4598,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  },\n  {\n    \"id\": 7335,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "create 2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"locationId\": 5780,\n  \"password\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/members",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"locationId\": 5780,\n  \"password\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/members",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"members"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 5493,\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"locationName\": \"string\",\n  \"locationAddress\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "locations",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "get By Id 1",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/locations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "5557"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/locations/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"locations",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 7881,\n  \"name\": \"string\",\n  \"address\": \"string\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get All 3",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/locations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"locations"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/locations",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 8429,\n    \"name\": \"string\",\n    \"address\": \"string\"\n  },\n  {\n    \"id\": 1111,\n    \"name\": \"string\",\n    \"address\": \"string\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "create 3",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"address\": \"string\",\n  \"name\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/locations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"locations"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"address\": \"string\",\n  \"name\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/locations",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 7881,\n  \"name\": \"string\",\n  \"address\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "employees",
+					"item": [
+						{
+							"name": "by-location",
+							"item": [
+								{
+									"name": "{locationId}",
+									"item": [
+										{
+											"name": "get By Location 2",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/employees/by-location/:locationId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"employees",
+														"by-location",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId",
+															"value": "5557"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/employees/by-location/:locationId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"employees",
+																"by-location",
+																":locationId"
+															],
+															"variable": [
+																{
+																	"key": "locationId",
+																	"value": "5557"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "[\n  {\n    \"id\": 4598,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  },\n  {\n    \"id\": 7335,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  }\n]"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get All 4",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/employees",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"employees"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/employees",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"employees"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 4598,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  },\n  {\n    \"id\": 7335,\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"locationName\": \"string\",\n    \"locationAddress\": \"string\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "create 4",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"locationId\": 5780,\n  \"password\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/employees",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"employees"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"locationId\": 5780,\n  \"password\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/employees",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"employees"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 5493,\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"locationName\": \"string\",\n  \"locationAddress\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"item": [
+								{
+									"name": "login",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"password\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"string\",\n  \"password\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/auth/login",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"auth",
+														"login"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"token\": \"string\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "me",
+							"item": [
+								{
+									"name": "me",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/auth/me",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"auth",
+												"me"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/auth/me",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"auth",
+														"me"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"email\": \"string\",\n  \"role\": \"string\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "purchases",
+					"item": [
+						{
+							"name": "my-purchases",
+							"item": [
+								{
+									"name": "get My Purchases",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/purchases/my-purchases",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"purchases",
+												"my-purchases"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/purchases/my-purchases",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"purchases",
+														"my-purchases"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": 9739,\n    \"trainingTypeName\": \"string\",\n    \"trainingTypePrice\": 6901.495262053523,\n    \"totalPrice\": 6520.890023095578,\n    \"quantity\": 4815,\n    \"remaining\": 7943,\n    \"purchasedAt\": \"2018-07-16T14:05:07.507Z\"\n  },\n  {\n    \"id\": 8581,\n    \"trainingTypeName\": \"string\",\n    \"trainingTypePrice\": 7537.565563323416,\n    \"totalPrice\": 5024.020142636236,\n    \"quantity\": 4928,\n    \"remaining\": 1152,\n    \"purchasedAt\": \"1989-10-19T07:19:23.462Z\"\n  }\n]"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "all",
+							"item": [
+								{
+									"name": "get All 5",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/purchases/all",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"purchases",
+												"all"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/purchases/all",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"purchases",
+														"all"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": 9739,\n    \"trainingTypeName\": \"string\",\n    \"trainingTypePrice\": 6901.495262053523,\n    \"totalPrice\": 6520.890023095578,\n    \"quantity\": 4815,\n    \"remaining\": 7943,\n    \"purchasedAt\": \"2018-07-16T14:05:07.507Z\"\n  },\n  {\n    \"id\": 8581,\n    \"trainingTypeName\": \"string\",\n    \"trainingTypePrice\": 7537.565563323416,\n    \"totalPrice\": 5024.020142636236,\n    \"quantity\": 4928,\n    \"remaining\": 1152,\n    \"purchasedAt\": \"1989-10-19T07:19:23.462Z\"\n  }\n]"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
