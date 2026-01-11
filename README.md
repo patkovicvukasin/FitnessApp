@@ -4,6 +4,7 @@ This project is a mini fitness center management system developed as part of the
 The system allows management of locations, employees, members, services, and training sessions, including purchasing services via Stripe and reserving sessions with real-time capacity updates.
 
 
+
 ---
 ## Project Overview
 
@@ -11,49 +12,53 @@ The application supports three user roles:
 
 ### Administrator
 
-Creates and manages locations
+- Creates and manages locations
 
-Creates and manages employees per location
+- Creates and manages employees per location
 
-Has access to all employee functionalities
+- Has access to all employee functionalities
+
 
 ### Employee
 
-Creates members
+- Creates members
 
-Creates services (trainings)
+- Creates services (trainings)
 
-Creates training sessions for their location
+- Creates training sessions for their location
 
-Manages reservations and monitors session capacity
+- Manages reservations and monitors session capacity
+
 
 ### Member
 
-Purchases training services via Stripe (test mode)
+- Purchases training services via Stripe (test mode)
 
-Reserves training sessions
+- Reserves training sessions
 
-Each reservation consumes one purchased service
+- Each reservation consumes one purchased service
+
 
 
 ---
 ## Core Features
 
-JWT-based authentication and role-based authorization
+- JWT-based authentication and role-based authorization
 
-Location, employee, member, service, and session management
+- Location, employee, member, service, and session management
 
-Stripe integration for service purchases (test mode)
+- Stripe integration for service purchases (test mode)
 
-Session reservation with capacity validation
+- Session reservation with capacity validation
 
-Real-time capacity updates using WebSockets
+- Real-time capacity updates using WebSockets
 
-Swagger / OpenAPI API documentation
+- Swagger / OpenAPI API documentation
 
-Seed data for testing
+- Seed data for testing
 
-Postman collection for API testing
+- Postman collection for API testing
+
 
 
 ---
@@ -61,40 +66,42 @@ Postman collection for API testing
 
 ### Backend
 
-Java
+- Java
 
+- Spring Boot 4 (Security, JPA, WebSocket)
 
-Spring Boot 4 (Security, JPA, WebSocket)
+- PostgreSQL
 
-PostgreSQL
+- Stripe Java SDK
 
-Stripe Java SDK
+- Maven
 
-Maven
 
 ### Frontend
 
-React
+- React
 
-TypeScript
+- TypeScript
 
-React Router
+- React Router
 
-Axios
+- Axios
 
-React Query
+- React Query
 
-SockJS + STOMP (WebSocket)
+- SockJS + STOMP (WebSocket)
 
-Stripe.js
+- Stripe.js
+
 
 ### Infrastructure
 
-Docker
+- Docker
 
-Docker Compose
+- Docker Compose
 
-Nginx
+- Nginx
+
 
 
 ---
@@ -102,17 +109,19 @@ Nginx
 
 ### Prerequisites
 
-Docker
+- Docker
 
-Docker Compose
+- Docker Compose
+
 
 ### Steps
 
-git clone <repository-url>
+- git clone <repository-url>
 
-cd fitnessapp
+- cd fitnessapp
 
-docker-compose up --build
+- docker-compose up --build
+
 
 ### Application URLs
 
@@ -155,6 +164,7 @@ The application includes seeded test accounts for each role:
 Each account is linked to predefined locations, services, and sessions.
 
 
+
 ---
 ## Stripe Test Cards
 
@@ -167,10 +177,12 @@ Use these test card numbers for purchases:
 - **CVC**: Any 3 digits (e.g., `123`)
 - **ZIP**: Any 5 digits (e.g., `12345`)
 
+
 ### Other Test Cards
 - **Declined**: `4000 0000 0000 0002`
 - **Insufficient Funds**: `4000 0000 0000 9995`
 - **Requires Authentication**: `4000 0025 0000 3155`
+
 
 
 ---
@@ -181,10 +193,12 @@ Interactive API documentation is available at:
 - **URL**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 - **OpenAPI Spec**: [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
 
+
 ### Postman Collection
 A complete Postman collection is included in the repository:
 - **File**: `docs/Fitness-App-API.postman_collection.json`
 - **Import**: Postman → Import → Select the file
+
 
 
 ---
