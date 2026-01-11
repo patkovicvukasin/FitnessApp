@@ -1,11 +1,11 @@
 package com.andrea360.fitnessapp.service.member;
 
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
-import com.andrea360.fitnessapp.model.Location;
-import com.andrea360.fitnessapp.model.Member;
-import com.andrea360.fitnessapp.model.Role;
-import com.andrea360.fitnessapp.model.User;
+import com.andrea360.fitnessapp.model.*;
 import com.andrea360.fitnessapp.repository.MemberRepository;
+import com.andrea360.fitnessapp.repository.PurchaseRepository;
+import com.andrea360.fitnessapp.repository.ReservationRepository;
+import com.andrea360.fitnessapp.repository.UserRepository;
 import com.andrea360.fitnessapp.service.location.LocationService;
 import com.andrea360.fitnessapp.service.user.UserService;
 import jakarta.transaction.Transactional;
@@ -23,6 +23,9 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final LocationService locationService;
     private final UserService userService;
+    private final ReservationRepository reservationRepository;
+    private final PurchaseRepository purchaseRepository;
+    private final UserRepository userRepository;
 
     @Override
     public Member createMember(
@@ -64,5 +67,29 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> getAll() {
         return memberRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteMember(Long memberId) {
+        Member member = getById(memberId);
+
+        List<Reservation> reservations = reservationRepository.findByMemberId(memberId);
+        for (Reservation reservation : reservations) {
+            Purchase purchase = reservation.getPurchase();
+            purchase.setRemaining(purchase.getRemaining() + 1);
+            purchaseRepository.save(purchase);
+        }
+        reservationRepository.deleteAll(reservations);
+
+        List<Purchase> purchases = purchaseRepository.findByMemberId(memberId);
+        purchaseRepository.deleteAll(purchases);
+
+        User user = member.getUser();
+        memberRepository.delete(member);
+
+        if (user != null) {
+            userRepository.delete(user);
+        }
     }
 }

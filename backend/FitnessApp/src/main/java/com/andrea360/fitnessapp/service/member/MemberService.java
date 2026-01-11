@@ -21,5 +21,7 @@ public interface MemberService {
     Optional<Member> findByUserId(Long id);
 
     List<Member> getAll();
+
+    public void deleteMember(Long memberId);
 }
 

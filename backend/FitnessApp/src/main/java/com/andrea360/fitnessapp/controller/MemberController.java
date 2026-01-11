@@ -51,4 +51,10 @@ public class MemberController {
                 .map(memberMapper::toResponse)
                 .toList();
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        memberService.deleteMember(id);
+    }
 }
