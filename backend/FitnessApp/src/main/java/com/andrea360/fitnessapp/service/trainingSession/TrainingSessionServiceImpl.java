@@ -1,16 +1,15 @@
 package com.andrea360.fitnessapp.service.trainingSession;
 
+import com.andrea360.fitnessapp.exception.auth.AccessDeniedException;
 import com.andrea360.fitnessapp.exception.common.BadRequestException;
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
 import com.andrea360.fitnessapp.model.*;
-import com.andrea360.fitnessapp.repository.EmployeeRepository;
-import com.andrea360.fitnessapp.repository.TrainingSessionRepository;
-import com.andrea360.fitnessapp.repository.UserRepository;
-import com.andrea360.fitnessapp.service.employee.EmployeeService;
+import com.andrea360.fitnessapp.repository.*;
 import com.andrea360.fitnessapp.service.trainingType.TrainingTypeService;
 import com.andrea360.fitnessapp.service.location.LocationService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,7 +25,10 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     private final EmployeeRepository employeeRepository;
     private final LocationService locationService;
     private final TrainingTypeService trainingTypeService;
-    private final EmployeeService employeeService;
+    private final TrainingTypeRepository trainingTypeRepository;
+    private final PurchaseRepository purchaseRepository;
+    private final ReservationRepository reservationRepository;
+    private final SimpMessagingTemplate messagingTemplate;
 
     @Override
     public TrainingSession createSession(
@@ -35,7 +37,8 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
             int maxCapacity,
             Long locationId,
             Long serviceId,
-            Long employeeId
+            Long employeeId,
+            String currentUserEmail
     ) {
         if (!endTime.isAfter(startTime)) {
             throw new BadRequestException("End time must be after start time");
@@ -54,7 +57,22 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
 
         Location location = locationService.getById(locationId);
         TrainingType trainingType = trainingTypeService.getById(serviceId);
-        Employee employee = employeeService.getById(employeeId);
+        Employee employee;
+
+        if (employeeId == null || employeeId == 0) {
+            User currentUser = userRepository.findByEmail(currentUserEmail)
+                    .orElseThrow(() -> new NotFoundException("User not found"));
+
+            if (currentUser.getRole() != Role.EMPLOYEE && currentUser.getRole() != Role.ADMIN) {
+                throw new AccessDeniedException("Only employees can create sessions");
+            }
+
+            employee = employeeRepository.findByUserId(currentUser.getId())
+                    .orElseThrow(() -> new NotFoundException("Employee profile not found"));
+        } else {
+            employee = employeeRepository.findById(employeeId)
+                    .orElseThrow(() -> new NotFoundException("Employee not found"));
+        }
 
         TrainingSession session = new TrainingSession();
         session.setStartTime(startTime);
@@ -92,5 +110,38 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
                 .orElseThrow(() -> new NotFoundException("Employee not found"));
 
         return trainingSessionRepository.findByEmployeeId(employee.getId());
+    }
+
+    @Override
+    public List<TrainingSession> getAllSessions() {
+        return trainingSessionRepository.findAll();
+    }
+
+    @Override
+    public List<TrainingSession> getByTrainingType(Long trainingTypeId) {
+        TrainingType trainingType = trainingTypeRepository.findById(trainingTypeId)
+                .orElseThrow(() -> new NotFoundException("Training type not found"));
+        return trainingSessionRepository.findByTrainingType(trainingType);
+    }
+
+    @Override
+    public void deleteSession(Long sessionId) {
+        TrainingSession session = getById(sessionId);
+
+        List<Reservation> reservations = reservationRepository.findByTrainingSessionId(sessionId);
+
+        for (Reservation reservation : reservations) {
+            Purchase purchase = reservation.getPurchase();
+            purchase.setRemaining(purchase.getRemaining() + 1);
+            purchaseRepository.save(purchase);
+            reservationRepository.delete(reservation);
+        }
+
+        trainingSessionRepository.delete(session);
+
+        messagingTemplate.convertAndSend(
+                "/topic/sessions/" + sessionId + "/deleted",
+                sessionId
+        );
     }
 }

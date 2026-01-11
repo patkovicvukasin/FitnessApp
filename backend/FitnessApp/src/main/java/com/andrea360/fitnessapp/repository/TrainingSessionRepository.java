@@ -1,6 +1,7 @@
 package com.andrea360.fitnessapp.repository;
 
 import com.andrea360.fitnessapp.model.TrainingSession;
+import com.andrea360.fitnessapp.model.TrainingType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -16,4 +17,6 @@ public interface TrainingSessionRepository extends JpaRepository<TrainingSession
     );
 
     List<TrainingSession> findByEmployeeId(Long employeeId);
+
+    List<TrainingSession> findByTrainingType(TrainingType trainingType);
 }

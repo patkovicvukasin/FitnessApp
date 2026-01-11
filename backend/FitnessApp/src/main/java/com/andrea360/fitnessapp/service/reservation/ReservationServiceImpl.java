@@ -1,5 +1,6 @@
 package com.andrea360.fitnessapp.service.reservation;
 
+import com.andrea360.fitnessapp.dto.websocket.SessionCapacityUpdate;
 import com.andrea360.fitnessapp.exception.auth.AccessDeniedException;
 import com.andrea360.fitnessapp.exception.common.BadRequestException;
 import com.andrea360.fitnessapp.exception.common.NotFoundException;
@@ -8,8 +9,9 @@ import com.andrea360.fitnessapp.exception.reservation.SessionAlreadyReservedExce
 import com.andrea360.fitnessapp.exception.reservation.SessionFullException;
 import com.andrea360.fitnessapp.model.*;
 import com.andrea360.fitnessapp.repository.*;
-import com.andrea360.fitnessapp.service.member.MemberService;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,8 @@ public class ReservationServiceImpl implements ReservationService {
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
     private final MemberRepository memberRepository;
+    private final SimpMessagingTemplate messagingTemplate;
+    private final EntityManager entityManager;
 
     @Override
     @Transactional
@@ -81,7 +85,12 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setPurchase(purchase);
         reservation.setReservedAt(LocalDateTime.now());
 
-        return reservationRepository.save(reservation);
+        Reservation savedReservation = reservationRepository.save(reservation);
+
+        entityManager.flush();
+        sendCapacityUpdate(session);
+
+        return savedReservation;
     }
 
     @Override
@@ -143,6 +152,8 @@ public class ReservationServiceImpl implements ReservationService {
         purchase.setRemaining(purchase.getRemaining() + 1);
 
         reservationRepository.delete(reservation);
+        entityManager.flush();
+        sendCapacityUpdate(session);
     }
 
     @Override
@@ -162,5 +173,26 @@ public class ReservationServiceImpl implements ReservationService {
             }
         }
         return reservationRepository.findByTrainingSessionId(sessionId);
+    }
+
+    private void sendCapacityUpdate(TrainingSession session) {
+
+        int reservedCount = reservationRepository.countByTrainingSessionId(session.getId());
+        int availableSlots = session.getMaxCapacity() - reservedCount;
+
+        SessionCapacityUpdate update = new SessionCapacityUpdate(
+                session.getId(),
+                availableSlots,
+                session.getMaxCapacity()
+        );
+
+        try {
+            messagingTemplate.convertAndSend(
+                    "/topic/sessions/" + session.getId() + "/capacity",
+                    update
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

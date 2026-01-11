@@ -12,7 +12,8 @@ public interface TrainingSessionService {
             int maxCapacity,
             Long locationId,
             Long serviceId,
-            Long employeeId
+            Long employeeId,
+            String currentUserEmail
     );
 
     TrainingSession getById(Long id);
@@ -23,5 +24,10 @@ public interface TrainingSessionService {
 
     List<TrainingSession> getMySessionsForEmployee(String email);
 
+    List<TrainingSession> getAllSessions();
+
+    List<TrainingSession> getByTrainingType(Long trainingTypeId);
+
+    void deleteSession(Long sessionId);
 }
 

@@ -22,7 +22,8 @@ public class TrainingSessionController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @PostMapping
-    public TrainingSessionResponse create(@Valid @RequestBody CreateTrainingSessionRequest request) {
+    public TrainingSessionResponse create(@Valid @RequestBody CreateTrainingSessionRequest request, Authentication auth) {
+        String email = auth.getName();
         return trainingSessionMapper.toResponse(
                 trainingSessionService.createSession(
                         request.getStartTime(),
@@ -30,7 +31,8 @@ public class TrainingSessionController {
                         request.getMaxCapacity(),
                         request.getLocationId(),
                         request.getTrainingTypeId(),
-                        request.getEmployeeId()
+                        request.getEmployeeId(),
+                        email
                 )
         );
     }
@@ -68,4 +70,28 @@ public class TrainingSessionController {
                 .map(trainingSessionMapper::toResponse)
                 .toList();
     }
+
+    @GetMapping
+    public List<TrainingSessionResponse> getAll() {
+        return trainingSessionService.getAllSessions()
+                .stream()
+                .map(trainingSessionMapper::toResponse)
+                .toList();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE', 'MEMBER')")
+    @GetMapping("/by-training-type/{trainingTypeId}")
+    public List<TrainingSessionResponse> getByTrainingType(@PathVariable Long trainingTypeId) {
+        return trainingSessionService.getByTrainingType(trainingTypeId)
+                .stream()
+                .map(trainingSessionMapper::toResponse)
+                .toList();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        trainingSessionService.deleteSession(id);
+    }
+
 }
