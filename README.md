@@ -12,20 +12,27 @@ The application supports three user roles:
 ### Administrator
 
 Creates and manages locations
+
 Creates and manages employees per location
+
 Has access to all employee functionalities
 
 ### Employee
 
 Creates members
+
 Creates services (trainings)
+
 Creates training sessions for their location
+
 Manages reservations and monitors session capacity
 
 ### Member
 
 Purchases training services via Stripe (test mode)
+
 Reserves training sessions
+
 Each reservation consumes one purchased service
 
 
@@ -33,12 +40,19 @@ Each reservation consumes one purchased service
 ## Core Features
 
 JWT-based authentication and role-based authorization
+
 Location, employee, member, service, and session management
+
 Stripe integration for service purchases (test mode)
+
 Session reservation with capacity validation
+
 Real-time capacity updates using WebSockets
+
 Swagger / OpenAPI API documentation
+
 Seed data for testing
+
 Postman collection for API testing
 
 
@@ -48,25 +62,38 @@ Postman collection for API testing
 ### Backend
 
 Java
+
+
 Spring Boot 4 (Security, JPA, WebSocket)
+
 PostgreSQL
+
 Stripe Java SDK
+
 Maven
 
 ### Frontend
 
 React
+
 TypeScript
+
 React Router
+
 Axios
+
 React Query
+
 SockJS + STOMP (WebSocket)
+
 Stripe.js
 
 ### Infrastructure
 
 Docker
+
 Docker Compose
+
 Nginx
 
 
@@ -76,18 +103,23 @@ Nginx
 ### Prerequisites
 
 Docker
+
 Docker Compose
 
 ### Steps
 
 git clone <repository-url>
+
 cd fitnessapp
+
 docker-compose up --build
 
 ### Application URLs
 
 Frontend: http://localhost:5173
+
 Backend API: http://localhost:8080/api
+
 Swagger UI: http://localhost:8080/swagger-ui.html
 
 
@@ -102,21 +134,21 @@ The application includes seeded test accounts for each role:
 
 ### Employees
 
-### Employee #1
+**Employee #1**
 - **Email**: `employee1@test.com`
 - **Password**: `employee123`
 
-### Employee #2
+**Employee #2**
 - **Email**: `employee2@test.com`
 - **Password**: `employee123`
 
 ### Members
 
-### Member #1
+**Member #1**
 - **Email**: `member1@test.com`
 - **Password**: `member123`
 
-### Member #2
+**Member #2**
 - **Email**: `member2@test.com`
 - **Password**: `member123`
 
