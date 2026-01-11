@@ -6,4 +6,4 @@ if (!stripePublishableKey) {
   throw new Error('Missing Stripe publishable key');
 }
 
-export const stripePromise = loadStripe(stripePublishableKey);
+export const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;

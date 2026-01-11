@@ -9,8 +9,10 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ecedee !important;
 }
 
 #root {
   min-height: 100vh;
+  background-color: #ecedee !important;
 }

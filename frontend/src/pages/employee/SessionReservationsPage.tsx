@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import { getReservationsBySession, cancelReservation } from '../../services/reservationService';
 import type { EmployeeReservation } from '../../types/Reservation';
 
@@ -10,11 +9,6 @@ export default function SessionReservationsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { user } = useAuth();
-
-  const getDashboardRoute = () => {
-    return user?.role === 'ADMIN' ? '/admin' : '/employee';
-  };
 
   const fetchReservations = async () => {
     try {

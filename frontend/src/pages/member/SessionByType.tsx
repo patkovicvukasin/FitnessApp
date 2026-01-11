@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { createReservation } from '../../services/reservationService';
 import { getSessionsByTrainingType } from '../../services/trainingSessionService';
 import type { TrainingSession } from '../../types/TrainingSession';
-import { websocketService } from '../../services/webSocketService';
+import { websocketService } from '../../services/websocketService';
 
 export default function SessionByTypePage() {
   const { typeId } = useParams<{ typeId: string }>();

@@ -133,20 +133,6 @@ export default function EmployeeSessionsPage() {
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
           <button
-            onClick={() => navigate('/employee/sessions/create')}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#2e7d32',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontWeight: 'bold'
-            }}
-          >
-            Nova sesija
-          </button>
-          <button
             onClick={() => navigate(getDashboardRoute())}
             style={{
               padding: '10px 20px',
