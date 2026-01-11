@@ -55,7 +55,7 @@ export default function EmployeeDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Create Member - Coming soon!')}>
+        onClick={() => navigate('/employee/members/create')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 Kreiraj člana</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Dodaj novog člana teretane
@@ -72,12 +72,13 @@ export default function EmployeeDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Create Training Type - Coming soon!')}>
+        onClick={() => navigate('/employee/training-types/create')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 Kreiraj tip treninga</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Dodaj novi tip treninga
           </p>
         </div>
+
         <div style={{
           padding: '30px',
           backgroundColor: 'white',
@@ -88,7 +89,7 @@ export default function EmployeeDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Create Session - Coming soon!')}>
+        onClick={() => navigate('/employee/sessions/create')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 Kreiraj termin</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Zakazivanje novog termina treninga
@@ -105,7 +106,7 @@ export default function EmployeeDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('My Sessions - Coming soon!')}>
+        onClick={() => navigate('/employee/sessions')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 Moji termini</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Pogledaj svoje termine treninga

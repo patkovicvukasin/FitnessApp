@@ -14,7 +14,7 @@ export default function HomePage() {
     }}>
       <div style={{
         textAlign: 'center',
-        maxWidth: '600px',
+        maxWidth: '800px',
         padding: '40px'
       }}>
         <h1 style={{
@@ -55,7 +55,7 @@ export default function HomePage() {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1565c0'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#1976d2'}
           >
-            🔐 Prijavi se
+            Prijavi se
           </button>
 
           <button
@@ -74,7 +74,7 @@ export default function HomePage() {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1b5e20'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2e7d32'}
           >
-            📍 Vidi lokacije
+            Vidi lokacije
           </button>
 
           <button
@@ -93,7 +93,7 @@ export default function HomePage() {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e65100'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f57c00'}
           >
-            🏃 Vidi tipove treninga
+            Vidi tipove treninga
           </button>
         </div>
       </div>

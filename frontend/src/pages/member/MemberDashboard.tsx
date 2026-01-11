@@ -55,7 +55,7 @@ export default function MemberDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('My Purchases - Coming soon!')}>
+        onClick={() => navigate('/member/purchases')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>💳 Moje kupovine</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Pogledaj svoje kupovine treninga
@@ -72,7 +72,7 @@ export default function MemberDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Buy Training - Coming soon!')}>
+        onClick={() => navigate('/member/purchases/buy')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>🛒 Kupi trening</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Kupi kredite za trening 
@@ -89,7 +89,7 @@ export default function MemberDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('My Reservations - Coming soon!')}>
+        onClick={() => navigate('/member/reservations')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>📅 Moje rezervacije</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Pogledaj svoje rezervisane termine
@@ -106,7 +106,7 @@ export default function MemberDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Create Reservation - Coming soon!')}>
+        onClick={() => navigate('/member/reservations/create')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>➕ Kreiraj rezervaciju</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Rezerviši termin treninga

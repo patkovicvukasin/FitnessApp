@@ -11,7 +11,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
+    <div style={{ padding: '40px', maxWidth: '1400px', margin: '0 auto' }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -40,10 +40,12 @@ export default function AdminDashboard() {
         </button>
       </div>
 
+      <h2 style={{ marginBottom: '20px', color: '#1976d2' }}>Admin funkcije</h2>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-        gap: '20px'
+        gap: '20px',
+        marginBottom: '40px'
       }}>
         <div style={{
           padding: '30px',
@@ -55,8 +57,8 @@ export default function AdminDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Create Location - Coming soon!')}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>📍 Dodaj novu lokaciju</h3>
+        onClick={() => navigate('/admin/locations/create')}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>📍 Dodaj lokaciju</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Kreiraj novu lokaciju teretane
           </p>
@@ -72,7 +74,7 @@ export default function AdminDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('Create Employee - Coming soon!')}>
+        onClick={() => navigate('/admin/employees/create')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👤 Dodaj zaposlenog</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Dodaj novog zaposlenog
@@ -89,7 +91,7 @@ export default function AdminDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('All Employees - Coming soon!')}>
+        onClick={() => navigate('/admin/employees')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>👥 Svi zaposleni</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Pogledaj sve zaposlene
@@ -106,7 +108,7 @@ export default function AdminDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('All Members - Coming soon!')}>
+        onClick={() => navigate('/admin/members')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏋️ Svi članovi</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Pogledaj sve članove
@@ -123,10 +125,85 @@ export default function AdminDashboard() {
         }}
         onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
         onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        onClick={() => alert('All Locations - Coming soon!')}>
+        onClick={() => navigate('/admin/locations')}>
           <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>🏢 Sve lokacije</h3>
           <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
             Pogledaj sve lokacije
+          </p>
+        </div>
+      </div>
+
+      <h2 style={{ marginBottom: '20px', color: '#2e7d32' }}>Upravljanje treninzima</h2>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: '20px'
+      }}>
+        <div style={{
+          padding: '30px',
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          cursor: 'pointer',
+          transition: 'transform 0.2s'
+        }}
+        onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+        onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+        onClick={() => navigate('/employee/members/create')}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>👤 Dodaj člana</h3>
+          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+            Kreiraj novog člana
+          </p>
+        </div>
+
+        <div style={{
+          padding: '30px',
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          cursor: 'pointer',
+          transition: 'transform 0.2s'
+        }}
+        onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+        onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+        onClick={() => navigate('/employee/training-types/create')}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>🏃 Dodaj tip treninga</h3>
+          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+            Kreiraj novi tip treninga
+          </p>
+        </div>
+
+        <div style={{
+          padding: '30px',
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          cursor: 'pointer',
+          transition: 'transform 0.2s'
+        }}
+        onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+        onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+        onClick={() => navigate('/employee/sessions/create')}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📅 Dodaj sesiju</h3>
+          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+            Zakaži novu trening sesiju
+          </p>
+        </div>
+
+        <div style={{
+          padding: '30px',
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          cursor: 'pointer',
+          transition: 'transform 0.2s'
+        }}
+        onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+        onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+        onClick={() => navigate('/employee/sessions')}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>📋 Moje sesije</h3>
+          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+            Pogledaj svoje sesije
           </p>
         </div>
       </div>
